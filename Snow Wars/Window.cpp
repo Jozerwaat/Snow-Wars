@@ -60,35 +60,8 @@ bool Window::Init()
 	return true;
 }
 
-void Window::PollEvents()
-{
-	SDL_Event event;
 
-	if (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			m_closed = true;
-			break;
-
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym)
-			{
-			case SDLK_ESCAPE:
-				m_closed = true;
-				break;
-			}
-		//case SDL_MOUSEMOTION:
-			//std::cout << "X: " << event.motion.x << "Y: " <<event.motion.y << std::endl;
-
-		default:
-			break;
-		}
-	}
-}
-
-void Window::Clear() const
+void Window::Render() const
 {
 	SDL_RenderPresent(m_renderer);
 	SDL_SetRenderDrawColor(m_renderer, 110, 110, 110, 255);

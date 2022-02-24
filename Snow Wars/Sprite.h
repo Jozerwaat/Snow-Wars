@@ -9,7 +9,7 @@ public:
 	Sprite(vec2 size, vec2 pos, const std::string& imagePath);
 	~Sprite();
 
-	void Draw() const;
+	void Draw(vec2 pos);
 
 protected:
 

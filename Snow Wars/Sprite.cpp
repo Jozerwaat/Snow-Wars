@@ -23,12 +23,10 @@ Sprite::~Sprite()
 	SDL_DestroyTexture(m_texture);
 }
 
-void Sprite::Draw() const
+void Sprite::Draw(vec2 pos)
 {
-	vec2 drawPos;
-	drawPos.x = (m_pos.x - (m_size.x / 2));
-	drawPos.y = (m_pos.x - (m_size.y / 2));
-	SDL_Rect rect = { drawPos.x, drawPos.y, m_size.x, m_size.y };
+	m_pos = pos;
+	SDL_Rect rect = { m_pos.x - (m_size.x / 2), m_pos.y - (m_size.y / 2), m_size.x, m_size.y };
 
 	SDL_RenderCopy(Window::m_renderer, m_texture, nullptr, &rect);
 }

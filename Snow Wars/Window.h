@@ -5,12 +5,12 @@
 class Window
 {
 public:
-	
+
 	Window(std::string title, int width, int height);
 	~Window();
 
-	void PollEvents();
-	void Clear() const;
+	void Close() { m_closed = true; }
+	void Render() const;
 
 	inline bool IsClosed() const { return m_closed; }
 
