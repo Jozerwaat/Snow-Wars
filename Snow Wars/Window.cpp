@@ -1,5 +1,9 @@
 #include <iostream>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 #include "Window.h"
+
+SDL_Renderer* Window::m_renderer = nullptr;
 
 Window::Window(std::string title, int width, int height) :
 	m_title(title), m_width(width), m_height(height)
@@ -11,6 +15,8 @@ Window::~Window()
 {
 	SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
+	TTF_Quit();
+	IMG_Quit();
 	SDL_Quit();
 }
 
@@ -19,7 +25,19 @@ bool Window::Init()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != NULL)
 	{
-		std::cout << "Failed to intialize SDL." << std::endl;
+		std::cerr << "Failed to intialize SDL." << std::endl;
+		return false;
+	}
+
+	if (IMG_Init(IMG_INIT_PNG) != 2) 
+	{
+		std::cerr << "Failed to initialize image." << std::endl;
+		return false;
+	}
+
+	if (TTF_Init() == -1) 
+	{
+		std::cerr << "Failed to initialize ttf." << std::endl;
 		return false;
 	}
 
@@ -38,6 +56,7 @@ bool Window::Init()
 		std::cerr << "Failed to create renderer.";
 		return false;
 	}
+
 	return true;
 }
 
@@ -53,6 +72,16 @@ void Window::PollEvents()
 			m_closed = true;
 			break;
 
+		case SDL_KEYDOWN:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_ESCAPE:
+				m_closed = true;
+				break;
+			}
+		//case SDL_MOUSEMOTION:
+			//std::cout << "X: " << event.motion.x << "Y: " <<event.motion.y << std::endl;
+
 		default:
 			break;
 		}
@@ -61,17 +90,7 @@ void Window::PollEvents()
 
 void Window::Clear() const
 {
+	SDL_RenderPresent(m_renderer);
 	SDL_SetRenderDrawColor(m_renderer, 110, 110, 110, 255);
 	SDL_RenderClear(m_renderer);
-
-	SDL_Rect rect;
-	rect.w = 100;
-	rect.h = 100;
-	rect.x = (m_width / 2) - (rect.w / 2);
-	rect.y = (m_height / 2) - (rect.h /2);
-	
-	SDL_SetRenderDrawColor(m_renderer, 200, 0, 200, 255);
-	SDL_RenderFillRect(m_renderer, &rect);
-
-	SDL_RenderPresent(m_renderer);
 }

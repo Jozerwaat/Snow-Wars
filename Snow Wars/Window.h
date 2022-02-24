@@ -7,13 +7,16 @@ class Window
 public:
 	
 	Window(std::string title, int width, int height);
-	
 	~Window();
 
 	void PollEvents();
 	void Clear() const;
 
 	inline bool IsClosed() const { return m_closed; }
+
+	static SDL_Renderer* m_renderer;
+
+protected:
 
 private:
 	bool Init();
@@ -25,5 +28,4 @@ private:
 	bool m_closed = false;
 
 	SDL_Window* m_window = nullptr;
-	SDL_Renderer* m_renderer = nullptr;
 };
