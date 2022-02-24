@@ -49,7 +49,7 @@ bool Window::Init()
 		return false;
 	}
 
-	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
+	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC);
 
 	if (m_renderer == nullptr)
 	{

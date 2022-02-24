@@ -9,7 +9,7 @@ class Text
 public:
 	Text(const std::string& fontPath, int fontSize, const std::string& messageText, const SDL_Color& color);
 
-	void Display(vec2 pos) const;
+	void Display(vec2 pos);
 
 	static SDL_Texture* LoadFont(const std::string& fontPath, int fontSize, const std::string& messageText, const SDL_Color& color);
 private:

@@ -7,11 +7,9 @@ Text::Text(const std::string& fontPath, int fontSize, const std::string& message
 {
     m_texture = LoadFont(fontPath, fontSize, messageText, color);
     SDL_QueryTexture(m_texture, nullptr, nullptr, &m_textRect.w, &m_textRect.h);
-
-
 }
 
-void Text::Display(vec2 pos) const
+void Text::Display(vec2 pos)
 {
     m_textRect.x = pos.x;
     m_textRect.y = pos.y;

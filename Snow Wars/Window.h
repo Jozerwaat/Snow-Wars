@@ -21,7 +21,6 @@ protected:
 private:
 	bool Init();
 
-
 	std::string m_title = "Snow Wars";
 	int m_width = 800;
 	int m_height = 600;

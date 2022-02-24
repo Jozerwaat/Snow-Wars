@@ -15,7 +15,7 @@ protected:
 
 private:
 	SDL_Texture* m_texture = nullptr;
-	vec2 m_size;
-	vec2 m_pos;
+	vec2 m_size = { 10,10 };
+	vec2 m_pos = { 0,0 };
 };
 

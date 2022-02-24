@@ -10,13 +10,14 @@ public:
 
 	void Update();
 	
-	vec2 GetMousePos() { return m_mousePos;}
+	inline SDL_Keycode& GetKey() { return m_pressedKey;}
 
-	SDL_Keycode& GetKey();
-	inline bool QuitGame() { return m_quit;}
+	inline vec2 GetMousePos()const { return m_mousePos; }
+
+	inline bool QuitGame() const { return m_quit; }
 
 private:
-	vec2 m_mousePos;
+	vec2 m_mousePos = { 0,0 };
 	SDL_Keycode m_pressedKey = 0;
 	bool m_quit = false;
 };
