@@ -14,9 +14,9 @@ public:
 	
 	inline bool Initalized() { return m_initialized; }
 
-	inline int GetScreenWidth() const { return m_width; }
+	inline int GetWidth() const { return m_width; }
 
-	inline int GetScreenHeight() const { return m_height; }
+	inline int GetHeight() const { return m_height; }
 
 	inline bool IsClosed() const { return m_closed; }
 

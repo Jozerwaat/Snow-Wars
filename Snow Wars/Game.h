@@ -19,7 +19,5 @@ public:
 private:
 	Window* m_window = nullptr;
 	bool m_quitGame = false;
-	Input m_input;
-
 };
 

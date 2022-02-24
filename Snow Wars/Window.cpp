@@ -9,10 +9,12 @@ Window::Window(std::string title, int width, int height) :
 	m_title(title), m_width(width), m_height(height)
 {
 	m_closed = !Init();
+	std::cout << "Window Initialized!" << std::endl;
 }
 
 Window::~Window()
 {
+	std::cout << "Destroy window!" << std::endl;
 	SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
 	TTF_Quit();

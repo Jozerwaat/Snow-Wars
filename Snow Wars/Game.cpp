@@ -5,12 +5,20 @@
 #include "Sprite.h"
 #include "Text.h"
 #include "Renderer.h"
+#include "SnowballController.h"
+#include "Player.h"
+#include "Mouse.h"
 
-static const Window window("Snow Wars", 1920, 1080);
+static Window window("Snow Wars", 1920, 1080);
+static const Input& input = Input::Instance();
 
- Text fpsText("Assets/GameFont.TTF", 40, "Snow Wars", { 255,0,0,255 });
+SnowballController snowballController(window);
+Player player(vec2(window.GetWidth() / 2, window.GetHeight() / 2), vec2(100, 100), "Assets/Snowman.png");
+Mouse mouse(vec2(0,0),vec2(50,50),"Assets/Cursor.png");
 
-Renderer renderer(vec2(100, 100), "Assets/Cursor.png");
+//Text fpsText("Assets/GameFont.TTF", 40, "Snow Wars", { 255,0,0,255 });
+
+//Renderer cursor(vec2(50, 50), "Assets/Cursor.png");
 Renderer backgroundRend(vec2(1920, 1080), "Assets/BackgroundHD.png");
 
 void Game::Init()
@@ -21,15 +29,19 @@ void Game::Init()
 void Game::Update()
 {
 	window.Render();
+	backgroundRend.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
 
-	if(m_input.QuitGame())
-		m_quitGame = true;
-	backgroundRend.Render(vec2(window.GetScreenWidth() / 2, window.GetScreenHeight() / 2));
-
-	renderer.Render(m_input.GetMousePos(), 45);
-	m_input.Update();
 	Timer::Instance().Tick();
+
+	input.Instance().Update();
+	snowballController.UpdateSnowballs();
+	player.Update();
+	mouse.Update();
+
 	//ShowFPS();
+
+	if (input.Instance().QuitGame())
+		m_quitGame = true;
 }
 
 void Game::ShowFPS()
