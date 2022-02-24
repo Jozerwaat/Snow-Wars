@@ -29,6 +29,7 @@ void Input::Update()
 				break;
 			}
 			case SDL_MOUSEMOTION:
+				//std::cout << "X: " << event.motion.x << "Y: " << event.motion.y << std::endl;
 				m_mousePos.x = event.motion.x;
 				m_mousePos.y = event.motion.y;
 				break;

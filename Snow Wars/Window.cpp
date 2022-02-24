@@ -57,6 +57,7 @@ bool Window::Init()
 		return false;
 	}
 
+	m_initialized = true;
 	return true;
 }
 

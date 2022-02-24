@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Text.h"
-#include "Window.h"
 
 
 Text::Text(const std::string& fontPath, int fontSize, const std::string& messageText, const SDL_Color& color)
@@ -20,19 +19,21 @@ void Text::Display(vec2 pos)
 SDL_Texture* Text::LoadFont(const std::string& fontPath, int fontSize, const std::string& messageText, const SDL_Color& color)
 {
     TTF_Font* font = TTF_OpenFont(fontPath.c_str(), fontSize);
+    std::cout << TTF_GetError() << std::endl;
 
-    if (font == NULL)
-        std::cerr << "Failed to load font" << std::endl;
+    if (font == nullptr)
+        std::cout << "Failed to load font" << std::endl;
 
     SDL_Surface* textSurface = TTF_RenderText_Solid(font, messageText.c_str(), color);
+    std::cout << SDL_GetError() << std::endl;
 
-    if (textSurface == NULL)
-        std::cerr << "Failed to create text surface" << std::endl;
+    if (textSurface == nullptr)
+        std::cout << "Failed to create text surface" << std::endl;
     
     SDL_Texture* textTexture = SDL_CreateTextureFromSurface(Window::m_renderer, textSurface);
 
-    if(textTexture == NULL)
-        std::cerr << "Failed to create text texture" << std::endl;
+    if(textTexture == nullptr)
+        std::cout << "Failed to create text texture" << std::endl;
 
     SDL_FreeSurface(textSurface);
     return textTexture;

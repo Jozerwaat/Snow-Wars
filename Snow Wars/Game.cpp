@@ -2,25 +2,34 @@
 #include <iostream>
 #include "Game.h"
 #include "Timer.h"
-#include "Text.h"
 #include "Sprite.h"
+#include "Text.h"
+#include "Renderer.h"
 
-static const Text fpsText("Assets/GameFont.TTF", 40, "FPS: ", { 255,0,0,255 });
+static const Window window("Snow Wars", 1920, 1080);
 
-Sprite mouse(vec2(100, 100), vec2(10, 10), "Assets/Cursor.png");
-Text text("Assets/GameFont.TTF", 40, "Test message", { 255,0,0,255 });
+ Text fpsText("Assets/GameFont.TTF", 40, "Snow Wars", { 255,0,0,255 });
 
+Renderer renderer(vec2(100, 100), "Assets/Cursor.png");
+Renderer backgroundRend(vec2(1920, 1080), "Assets/BackgroundHD.png");
+
+void Game::Init()
+{
+
+}
 
 void Game::Update()
 {
+	window.Render();
+
 	if(m_input.QuitGame())
 		m_quitGame = true;
+	backgroundRend.Render(vec2(window.GetScreenWidth() / 2, window.GetScreenHeight() / 2));
 
-	mouse.Draw(m_input.GetMousePos());
-	text.Display(vec2(10, 10));
+	renderer.Render(m_input.GetMousePos(), 45);
 	m_input.Update();
 	Timer::Instance().Tick();
-	ShowFPS();
+	//ShowFPS();
 }
 
 void Game::ShowFPS()
@@ -29,5 +38,4 @@ void Game::ShowFPS()
 	char fpsChar[11];
 	strcpy_s(fpsChar, fpsString.c_str());
 	std::cout << "FPS: " << fpsString << std::endl;
-	//m_screen->Print(fpsChar, m_screen->GetWidth() - 60, 10, 0xffff0000, 3);
 }

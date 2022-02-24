@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL_ttf.h>
-#include <SDL.h>
 #include <string>
+#include "Window.h"
 #include "Vec.h"
 
 class Text

@@ -6,16 +6,16 @@
 class Sprite
 {
 public:
-	Sprite(vec2 size, vec2 pos, const std::string& imagePath);
+	Sprite(vec2 size, const std::string& imagePath);
 	~Sprite();
 
-	void Draw(vec2 pos);
+	inline SDL_Texture* GetTexture() { return m_texture; }
+	inline vec2 GetSize() { return m_size; }
 
 protected:
 
 private:
 	SDL_Texture* m_texture = nullptr;
 	vec2 m_size = { 10,10 };
-	vec2 m_pos = { 0,0 };
 };
 
