@@ -20,7 +20,7 @@ public:
 	virtual void Update() override;
 
 private:
-	vec2 m_direction;
+	vec2 m_direction = { 0,0 };
 
 	int m_speed = 1;
 };

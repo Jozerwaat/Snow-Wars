@@ -23,7 +23,7 @@ Renderer backgroundRend(vec2(1920, 1080), "Assets/BackgroundHD.png");
 
 void Game::Init()
 {
-
+	player.Init(snowballController);
 }
 
 void Game::Update()
