@@ -29,9 +29,9 @@ public:
 		m_collider = CircleCollider(radius, &m_transform);
 	}
 
-	CircleCollider GetCollider()
+	CircleCollider* GetCollider()
 	{
-		return m_collider;
+		return &m_collider;
 	}
 
 	virtual void Init() {}
