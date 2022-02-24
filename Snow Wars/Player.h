@@ -9,7 +9,7 @@ class Player : public Entity
 public:
 	Player() = default;
 
-	Player(vec2 position, vec2 size, std::string spritePath) : Entity(position, size, spritePath) {}
+	Player(vec2 position, vec2 size, std::string spritePath, int frameCount) : Entity(position, size, spritePath, frameCount) {}
 
 	void Update() override;
 

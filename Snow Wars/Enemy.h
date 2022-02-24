@@ -5,7 +5,7 @@ class Enemy : public Entity
 {
 public:
 	Enemy() {}
-	Enemy(vec2 position, vec2 size, std::string spritePath) : Entity(position, size, spritePath) {}
+	Enemy(vec2 position, vec2 size, std::string spritePath, int frameCount) : Entity(position, size, spritePath, frameCount) {}
 	~Enemy() {}
 
 	void Init(vec2 position, vec2 direction, int speed)

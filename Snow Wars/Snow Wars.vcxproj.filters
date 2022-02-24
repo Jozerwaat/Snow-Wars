@@ -25,18 +25,27 @@
     <Filter Include="Header Files\Player">
       <UniqueIdentifier>{b65375ba-e021-4aa1-9f75-d12c89d5b88b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Enemy">
+      <UniqueIdentifier>{c8057261-f4de-439f-aaf2-9ccc687170e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Snowball">
+      <UniqueIdentifier>{45dbaece-dc3f-4c05-ba3f-e9b7d51f588a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SDL">
+      <UniqueIdentifier>{ba243176-96ba-484b-9ee5-c7a4ad07a57e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SDL">
+      <UniqueIdentifier>{64f52777-c8be-434e-b572-a452b6e5b213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Snowball">
+      <UniqueIdentifier>{93ecac02-e489-4b3e-ad42-837c5a4e8792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemy">
+      <UniqueIdentifier>{c8d05d11-fc5c-4f54-9e11-06995d89f314}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
@@ -51,39 +60,39 @@
     <ClCompile Include="CircleCollider.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="EnemySpawner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Snowball.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="SnowballController.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
     <ClCompile Include="ScoreController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySpawner.cpp">
+      <Filter>Source Files\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Snowball.cpp">
+      <Filter>Source Files\Snowball</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowballController.cpp">
+      <Filter>Source Files\Snowball</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Vec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
@@ -107,12 +116,6 @@
     <ClInclude Include="ObjectPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnemySpawner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
@@ -122,14 +125,29 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Snowball.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="SnowballController.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
     <ClInclude Include="ScoreController.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySpawner.h">
+      <Filter>Header Files\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowballController.h">
+      <Filter>Header Files\Snowball</Filter>
+    </ClInclude>
+    <ClInclude Include="Snowball.h">
+      <Filter>Header Files\Snowball</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files\SDL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

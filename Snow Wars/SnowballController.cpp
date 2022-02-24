@@ -27,7 +27,7 @@ void SnowballController::SpawnSnowball(vec2 direction, vec2 position)
 	m_snowballs.push_back(snowball);
 
 	if (snowball->IsInstantiated() == false)
-		*snowball = Snowball(position, vec2(50, 50), spritePath);
+		*snowball = Snowball(position, vec2(50, 50), spritePath, 1);
 
 	snowball->SetRadius(22);
 

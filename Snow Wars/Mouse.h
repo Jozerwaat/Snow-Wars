@@ -11,10 +11,10 @@ class Mouse
 public:
 	Mouse() = default;
 
-	Mouse(vec2 position, vec2 size, std::string spritePath)
+	Mouse(vec2 position, vec2 size, std::string spritePath, int frameCount)
 	{
 		m_transform = Transform(position);
-		m_renderer = Renderer(size, spritePath);
+		m_renderer = Renderer(size, spritePath, frameCount);
 		SDL_ShowCursor(false);
 	}
 

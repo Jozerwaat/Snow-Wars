@@ -6,7 +6,7 @@ class Snowball : public Entity
 {
 public:
 	Snowball() = default;
-	Snowball(vec2 position, vec2 size, std::string spritePath) : Entity(position, size, spritePath) {}
+	Snowball(vec2 position, vec2 size, std::string spritePath, int frameCount) : Entity(position, size, spritePath, frameCount) {}
 	~Snowball() {}
 
 	void Init(vec2 position, vec2 direction, int speed)

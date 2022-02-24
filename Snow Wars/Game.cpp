@@ -14,14 +14,14 @@ static Window window("Snow Wars", 1920, 1080);
 static const Input& input = Input::Instance();
 
 SnowballController snowballController(window);
-Player player(vec2(window.GetWidth() / 2, window.GetHeight() / 2), vec2(100, 100), "Assets/Snowman.png");
-Mouse mouse(vec2(0,0),vec2(50,50),"Assets/Cursor.png");
+Player player(vec2(window.GetWidth() / 2, window.GetHeight() / 2), vec2(100, 100), "Assets/Snowman.png", 1);
+Mouse mouse(vec2(0,0),vec2(50,50),"Assets/Cursor.png", 1);
 EnemySpawner enemySpawner;
 
 //Text fpsText("Assets/GameFont.TTF", 40, "Snow Wars", { 255,0,0,255 });
 
 //Renderer cursor(vec2(50, 50), "Assets/Cursor.png");
-Renderer backgroundRend(vec2(1920, 1080), "Assets/BackgroundHD.png");
+Renderer backgroundRend(vec2(1920, 1080), "Assets/BackgroundHD.png",1);
 
 void Game::Init()
 {

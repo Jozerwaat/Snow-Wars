@@ -11,10 +11,10 @@ class Entity
 public:
 	Entity() = default;
 
-	Entity(vec2 position, vec2 size, std::string spritePath)
+	Entity(vec2 position, vec2 size, std::string spritePath, int frameCount)
 	{
 		m_transform = Transform(position);
-		m_renderer = Renderer(size, spritePath);
+		m_renderer = Renderer(size, spritePath, frameCount);
 		m_instantiated = true;
 	}
 	~Entity() {}
