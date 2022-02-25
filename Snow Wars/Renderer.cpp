@@ -8,7 +8,7 @@ void Renderer::Render(const vec2& position)
 	float frameWidth = m_sprite->GetSize().x / m_frameCount;
 
 	SDL_Rect image;
-	image.x = (position. x - frameWidth) + (frameWidth / 2);
+	image.x = (position.x - frameWidth) + (frameWidth / 2);
 	image.y = position.y - (m_sprite->GetSize().y / 2);
 	image.w = frameWidth;
 	image.h = m_sprite->GetSize().y;
@@ -33,5 +33,13 @@ void Renderer::Render(const vec2& position, const float angle)
 
 void Renderer::Animate(float speed)
 {
+	m_currentTime += (speed * timer.ElapsedSeconds());
+	if (m_currentTime > 1)
+	{
+		m_currentTime = 0;
+		m_currentFrame += 1;
+	}
 
+	if (m_currentFrame >= m_frameCount)
+		m_currentFrame = 0;
 }

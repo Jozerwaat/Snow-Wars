@@ -87,7 +87,7 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 	m_enemies.push_back(enemy);
 
 	if (enemy->IsInstantiated() == false)
-		*enemy = Enemy(position, vec2(2160, 90), spritePath, 24);
+		*enemy = Enemy(position, spritePath, 24);
 
 	enemy->SetRadius(25);
 	enemy->Init(position, direction, speed);

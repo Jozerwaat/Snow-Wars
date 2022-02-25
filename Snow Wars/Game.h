@@ -19,5 +19,6 @@ public:
 private:
 	Window* m_window = nullptr;
 	bool m_quitGame = false;
+	bool m_gameOver = true;
 };
 

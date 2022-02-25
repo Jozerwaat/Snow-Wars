@@ -11,10 +11,11 @@ class Renderer
 public:
 	Renderer() = default;
 
-	Renderer(vec2 size, const std::string& imagePath, int frameCount) 
+	Renderer(const std::string& imagePath, int frameCount, vec2 size = NULL)
 	{ 
-		m_sprite = new Sprite(size, imagePath);
+		m_sprite = new Sprite(imagePath, size);
 		m_frameCount = frameCount;
+		m_size = vec2(m_sprite->GetSize().x / m_frameCount, m_sprite->GetSize().y);
 	}
 
 
@@ -30,9 +31,16 @@ public:
 
 	inline void SetFrame(int frame) { m_currentFrame = frame;}
 
+	inline vec2 GetSize() { return m_size;}
+
 private:
 	Sprite* m_sprite = nullptr;
+
+	vec2 m_size = { 0,0 };
+
 	int m_frameCount = 1;
 	int m_currentFrame = 0;
+
+	float m_currentTime = 0;
 };
 

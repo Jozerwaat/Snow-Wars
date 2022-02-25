@@ -2,11 +2,17 @@
 #include <iostream>
 #include "Sprite.h"
 
-Sprite::Sprite(vec2 size, const std::string& imagePath) :
+Sprite::Sprite(const std::string& imagePath, vec2 size) :
 	m_size(size)
 {
 	SDL_Surface* surface = IMG_Load(imagePath.c_str());
 	std::cout << SDL_GetError() << std::endl;
+
+	if (size.x == 0 && size.y == 0) 
+	{
+		m_size.x = surface->w;
+		m_size.y = surface->h;
+	}
 
 	if (surface == NULL)
 		std::cout << "Failed to create surface for " + imagePath << std::endl;

@@ -6,7 +6,7 @@
 class Sprite
 {
 public:
-	Sprite(vec2 size, const std::string& imagePath);
+	Sprite(const std::string& imagePath, vec2 size = NULL);
 	~Sprite();
 
 	inline SDL_Texture* GetTexture() { return m_texture; }
