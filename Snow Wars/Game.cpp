@@ -18,10 +18,11 @@ Player player(vec2(window.GetWidth() / 2, window.GetHeight() / 2), vec2(100, 100
 Mouse mouse(vec2(0,0),vec2(50,50),"Assets/Cursor.png", 1);
 EnemySpawner enemySpawner;
 
-//Text fpsText("Assets/GameFont.TTF", 40, "Snow Wars", { 255,0,0,255 });
+Text gameTitle("Assets/GameFont.TTF", 100, "Snow Wars", { 0,200,255,255 });
 
 //Renderer cursor(vec2(50, 50), "Assets/Cursor.png");
 Renderer backgroundRend(vec2(1920, 1080), "Assets/BackgroundHD.png",1);
+Renderer startButton(vec2(400, 100), "Assets/StartButton.tga", 2);
 
 void Game::Init()
 {
@@ -33,6 +34,7 @@ void Game::Update()
 {
 	window.Render();
 	backgroundRend.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
+	startButton.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
 
 	Timer::Instance().Tick();
 
@@ -41,7 +43,7 @@ void Game::Update()
 	player.Update();
 	mouse.Update();
 	enemySpawner.Update();
-
+	//gameTitle.Display(vec2((window.GetWidth() / 2) -250, 100));
 	//ShowFPS();
 
 	if (input.Instance().QuitGame())
@@ -51,7 +53,7 @@ void Game::Update()
 void Game::ShowFPS()
 {
 	std::string fpsString = std::to_string(Timer::Instance().GetFPS());
-	char fpsChar[11];
+	char fpsChar[20];
 	strcpy_s(fpsChar, fpsString.c_str());
 	std::cout << "FPS: " << fpsString << std::endl;
 }

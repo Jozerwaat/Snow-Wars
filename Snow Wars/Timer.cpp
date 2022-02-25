@@ -18,9 +18,9 @@ void Timer::Reset()
 	m_totalTime = 0.0;
 }
 
-int Timer::GetFPS()
+double Timer::GetFPS()
 {
-	static int fps = 0.0;
+	static double fps = 0.0;
 	static int numFrames = 0;
 	static double totalTime = 0.0;
 

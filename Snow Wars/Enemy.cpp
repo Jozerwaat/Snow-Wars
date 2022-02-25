@@ -3,13 +3,11 @@
 
 const static Timer& timer = Timer::Instance();
 
-
 void Enemy::Update()
 {
-	//m_renderer.Animate(30);
+	m_renderer.Animate(1);
 	m_renderer.Render(m_transform.GetPosition());
 	m_transform.Translate((m_direction * m_speed) * timer.ElapsedSeconds());
-
 }
 
 bool Enemy::OutsideBounds(int screenWidth, int screenHeight)

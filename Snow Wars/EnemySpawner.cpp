@@ -7,7 +7,7 @@
 static const Timer& timer = Timer::Instance();
 static const ScoreController& scoreController = ScoreController::Instance();
 
-static char spritePath[] = "assets/IceBall.png";
+static char spritePath[] = "assets/IceBall.tga";
 
 static ObjectPool<Enemy> pool;
 static const int speed = 500;
@@ -87,7 +87,7 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 	m_enemies.push_back(enemy);
 
 	if (enemy->IsInstantiated() == false)
-		*enemy = Enemy(position, vec2(90, 90), spritePath, 1);
+		*enemy = Enemy(position, vec2(2160, 90), spritePath, 24);
 
 	enemy->SetRadius(25);
 	enemy->Init(position, direction, speed);

@@ -22,7 +22,7 @@ public:
 	/// </summary>
 	void Reset();
 
-	int GetFPS();
+	double GetFPS();
 
 	double ElapsedMilliSeconds() const;
 	double ElapsedSeconds() const;

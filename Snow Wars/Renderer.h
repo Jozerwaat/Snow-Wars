@@ -25,13 +25,14 @@ public:
 
 	void Render(const vec2& position);
 	void Render(const vec2& position, const float angle);
+	
+	void Animate(float speed);
 
-	void Animate(int speed);
-
+	inline void SetFrame(int frame) { m_currentFrame = frame;}
 
 private:
 	Sprite* m_sprite = nullptr;
 	int m_frameCount = 1;
-	int m_currentFrame = 1;
+	int m_currentFrame = 0;
 };
 
