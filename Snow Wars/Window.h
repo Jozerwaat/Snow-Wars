@@ -12,6 +12,8 @@ public:
 	void Close() { m_closed = true; }
 	void Render() const;
 	
+	void Resize();
+
 	inline bool Initalized() { return m_initialized; }
 
 	inline int GetWidth() const { return m_width; }
@@ -32,6 +34,7 @@ private:
 	int m_height = 600;
 	bool m_closed = false;
 	bool m_initialized = false;
+	bool m_fullscreen = false;
 
 	SDL_Window* m_window = nullptr;
 };

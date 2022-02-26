@@ -26,7 +26,7 @@ Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
 Text gameTitle("Assets/GameFont.TTF", 100, "Snow Wars", { 0,200,255,255 });
 
 Renderer healthbar("Assets/Healthbar.tga", 4);
-Renderer backgroundRend("Assets/BackgroundHD.png", 1);
+Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
 
 void Game::Init()
 {
@@ -39,6 +39,7 @@ void Game::Init()
 
 void Game::Update()
 {
+
 	window.Render();
 	backgroundRend.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
 	menuController.Update();
@@ -69,7 +70,7 @@ void Game::Update()
 	enemySpawner.Update();
 	//gameTitle.Display(vec2((window.GetWidth() / 2) -250, 100));
 	//ShowFPS();
-	scoreController.Instance().DisplayScore(vec2(10,10));
+	scoreController.Instance().DisplayScore(vec2(10, 10));
 	mouse.Update();
 
 
@@ -82,6 +83,7 @@ void Game::Reset()
 
 	Timer::Instance().Reset();
 	player.SetHealth(3);
+	player.GetCollider()->GetTransform()->GetPosition() = vec2(window.GetWidth() / 2, window.GetHeight() / 2);
 	m_gameOver = false;
 }
 
@@ -105,4 +107,18 @@ void Game::ShowFPS()
 	char fpsChar[20];
 	strcpy_s(fpsChar, fpsString.c_str());
 	std::cout << "FPS: " << fpsString << std::endl;
+}
+
+void Game::FullScreen()
+{
+	window.Resize();
+	backgroundRend.~Renderer();
+	new(&backgroundRend) Renderer("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
+	//backgroundRend.
+	/*
+	SomeClass object(1, 2, 3);
+...
+object.~SomeClass(); // destruct
+new(&object) SomeClass(4, 5, 6); /
+	*/ 
 }

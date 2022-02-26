@@ -24,6 +24,7 @@ void Input::Update()
 	{
 		switch (event.type)
 		{
+
 		case SDL_QUIT:
 			m_quit = true;
 			break;

@@ -31,19 +31,19 @@ bool Window::Init()
 		return false;
 	}
 
-	if (IMG_Init(IMG_INIT_PNG) != 2) 
+	if (IMG_Init(IMG_INIT_PNG) != 2)
 	{
 		std::cerr << "Failed to initialize image." << std::endl;
 		return false;
 	}
 
-	if (TTF_Init() == -1) 
+	if (TTF_Init() == -1)
 	{
 		std::cerr << "Failed to initialize ttf." << std::endl;
 		return false;
 	}
 
-	m_window = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, 0);
+	m_window = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_width, m_height, SDL_WINDOW_SHOWN);
 
 	if (m_window == nullptr)
 	{
@@ -69,4 +69,24 @@ void Window::Render() const
 	SDL_RenderPresent(m_renderer);
 	SDL_SetRenderDrawColor(m_renderer, 110, 110, 110, 255);
 	SDL_RenderClear(m_renderer);
+}
+
+void Window::Resize()
+{
+	if (m_fullscreen == false)
+	{
+		SDL_MaximizeWindow(m_window);
+		SDL_GetWindowSize(m_window, &m_width, &m_height);
+		SDL_GLContext context = SDL_GL_CreateContext(m_window);
+		SDL_GL_MakeCurrent(m_window, context);
+		m_fullscreen = true;
+	}
+	else if (m_fullscreen)
+	{
+		SDL_RestoreWindow(m_window);
+		SDL_GetWindowSize(m_window, &m_width, &m_height);
+		SDL_GLContext context = SDL_GL_CreateContext(m_window);
+		SDL_GL_MakeCurrent(m_window, context);
+		m_fullscreen = false;
+	}
 }

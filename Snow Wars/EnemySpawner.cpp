@@ -91,7 +91,8 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 		*enemy = Enemy(position, spritePath, 24);
 
 	enemy->SetRadius(25);
-	enemy->Init(position, direction, speed);
+	int enemySpeed = speed + (-140 + (rand() % 260));
+	enemy->Init(position, direction, enemySpeed);
 	enemy->SetHealth(3);	
 }
 

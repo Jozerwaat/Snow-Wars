@@ -25,6 +25,10 @@ public:
 	void MouseUp();
 	void Update();
 	void OnClick();
+	void SetPosition(vec2 position) 
+	{
+		m_transform.GetPosition() = position;
+	}
 	void (*function)();
 
 private:

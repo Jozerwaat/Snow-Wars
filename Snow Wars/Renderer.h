@@ -17,7 +17,7 @@ public:
 		m_frameCount = frameCount;
 		m_size = vec2(m_sprite->GetSize().x / m_frameCount, m_sprite->GetSize().y);
 	}
-
+	~Renderer() = default;
 
 	Sprite* GetSprite()
 	{
@@ -28,6 +28,7 @@ public:
 	void Render(const vec2& position, const float angle);
 	
 	void Animate(float speed);
+	void Resize(vec2 newSize, vec2 newPosition = NULL);
 
 	inline void SetFrame(int frame) { m_currentFrame = frame;}
 

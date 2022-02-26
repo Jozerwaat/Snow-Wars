@@ -43,3 +43,7 @@ void Renderer::Animate(float speed)
 	if (m_currentFrame >= m_frameCount)
 		m_currentFrame = 0;
 }
+
+void Renderer::Resize(vec2 newSize, vec2 newPosition)
+{
+}

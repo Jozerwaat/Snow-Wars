@@ -12,13 +12,12 @@ public:
 
 	void Update();
 	
-	inline SDL_Keycode& GetKey() { return m_pressedKey;}
-
-	 vec2& GetMousePos() { return m_mousePos; }
+	vec2& GetMousePos() { return m_mousePos; }
 	const Uint8* KeyboardEvents();
 
 	inline bool QuitGame() const { return m_quit; }
 	inline bool MouseDown() { return m_mouseDown; }
+	inline bool ResizeWindow() {return m_resize;}
 
 private:
 	void MouseEvents();
@@ -27,8 +26,8 @@ private:
 	float m_mouseScaleX =1;
 	float m_mouseScaleY = 1;
 	
-	SDL_Keycode m_pressedKey = 0;
 	bool m_quit = false;
+	bool m_resize = false;
 	bool m_mouseDown;
 };
 
