@@ -92,9 +92,7 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 
 	enemy->SetRadius(25);
 	enemy->Init(position, direction, speed);
-	enemy->SetHealth(3);
-	std::cout << "X: " << position.x << " Y: " << position.y << "Enemy Y: " << enemy->GetCollider()->GetTransform()->GetPosition().y<< std::endl;
-	
+	enemy->SetHealth(3);	
 }
 
 void EnemySpawner::CalculateSpawnPosition()

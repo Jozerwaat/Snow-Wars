@@ -10,12 +10,17 @@ bool Button::MouseOver()
 	vec2 spriteSize = m_renderer.GetSize();
 	vec2 position = m_transform.GetPosition();
 	float widthOffset = spriteSize.x / 2;
-	float heightOffset = spriteSize.y /2;
+	float heightOffset = spriteSize.y / 2;
 
 	if (mousePos.x > (position.x - widthOffset) && mousePos.x < (position.x + widthOffset))
 	{
 		if (mousePos.y > (position.y - heightOffset) && mousePos.y < (position.y + heightOffset))
+		{
+			if (playerInput.Instance().MouseDown() == false)
+				m_mouseEntered = true;
+
 			return true;
+		}
 	}
 
 	return false;
@@ -37,7 +42,7 @@ void Button::Update()
 	if (m_hide)
 		return;
 
-	if (MouseOver())
+	if (MouseOver() && m_mouseEntered)
 	{
 		if (playerInput.Instance().MouseDown())
 		{
@@ -53,6 +58,7 @@ void Button::Update()
 	}
 	else if (MouseOver() == false || playerInput.Instance().MouseDown() == false)
 	{
+		m_mouseEntered = false;
 		m_mouseHeld = false;
 		m_renderer.SetFrame(0);
 	}
@@ -63,6 +69,7 @@ void Button::Update()
 
 void Button::OnClick()
 {
+	m_mouseEntered = false;
 	m_renderer.SetFrame(0);
 	function();
 }

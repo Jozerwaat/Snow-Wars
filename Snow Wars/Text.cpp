@@ -2,9 +2,16 @@
 #include "Text.h"
 
 
-Text::Text(const std::string& fontPath, int fontSize, const std::string& messageText, const SDL_Color& color)
+Text::Text(const std::string& fontPath, int fontSize, const std::string& messageText, const SDL_Color& color) :
+    m_fontPath(fontPath), m_fontSize(fontSize), m_color(color)
 {
     m_texture = LoadFont(fontPath, fontSize, messageText, color);
+    SDL_QueryTexture(m_texture, nullptr, nullptr, &m_textRect.w, &m_textRect.h);
+}
+
+void Text::ChangeText(const std::string& message)
+{
+    m_texture = LoadFont(m_fontPath, m_fontSize, message, m_color);
     SDL_QueryTexture(m_texture, nullptr, nullptr, &m_textRect.w, &m_textRect.h);
 }
 

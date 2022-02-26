@@ -1,5 +1,6 @@
 #pragma once
 #include "Window.h"
+#include "Vec.h"
 
 class ScoreController
 {
@@ -8,11 +9,11 @@ public:
 
 	const int GetScore() { return m_score; }
 
-	void AddScore(int amount) { m_score += amount; }
+	void AddScore(int amount);
 
-	void Reset() { m_score = 0; }
+	void Reset();
 
-	void DisplayScore(Window* window);
+	void DisplayScore(vec2 position);
 private:
 	int m_score;
 };

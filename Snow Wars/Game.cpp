@@ -7,6 +7,7 @@
 #include "Renderer.h"
 #include "MenuController.h"
 #include "SnowballController.h"
+#include "ScoreController.h"
 #include "Player.h"
 #include "Mouse.h"
 #include "EnemySpawner.h"
@@ -14,6 +15,7 @@
 static Window window("Snow Wars", 1920, 1080);
 
 static const Input& input = Input::Instance();
+const static ScoreController& scoreController = ScoreController::Instance();
 
 MenuController menuController;
 SnowballController snowballController(window);
@@ -41,14 +43,16 @@ void Game::Update()
 	backgroundRend.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
 	menuController.Update();
 	input.Instance().Update();
-	mouse.Update();
 
 	if (input.Instance().QuitGame())
 		m_quitGame = true;
 
-
 	if (m_gameOver)
+	{
+		gameTitle.Display(vec2((window.GetWidth() / 2) - 250, 100));
+		mouse.Update();
 		return;
+	}
 
 	if (player.GetHealth() <= 0)
 	{
@@ -65,6 +69,8 @@ void Game::Update()
 	enemySpawner.Update();
 	//gameTitle.Display(vec2((window.GetWidth() / 2) -250, 100));
 	//ShowFPS();
+	scoreController.Instance().DisplayScore(vec2(10,10));
+	mouse.Update();
 
 
 }
@@ -81,7 +87,7 @@ void Game::Reset()
 
 void Game::GameOver()
 {
-	//scoreController.Instance().Reset();
+	scoreController.Instance().Reset();
 	healthbar.SetFrame(0);
 	menuController.Show();
 	enemySpawner.PoolAll();

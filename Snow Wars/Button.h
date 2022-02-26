@@ -30,6 +30,7 @@ public:
 private:
 	bool m_hide = false;
 	bool m_mouseHeld = false;
+	bool m_mouseEntered = false;
 	Transform m_transform;
 	Renderer m_renderer;
 };
