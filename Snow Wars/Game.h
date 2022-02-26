@@ -11,9 +11,10 @@ public:
 
 	void Init();
 	void Update();
-
+	void Reset();
+	void GameOver();
+	void Shutdown();
 	void ShowFPS();
-
 	inline bool QuitGame() { return m_quitGame; }
 
 private:

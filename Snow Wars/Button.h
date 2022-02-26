@@ -15,15 +15,9 @@ public:
 	}
 	~Button() {}
 
-	void Hide()
-	{
-		m_hide = true;
-	}
+	void Hide() { m_hide = true; }
 
-	void Show()
-	{
-		m_hide = false;
-	}
+	void Show() { m_hide = false; }
 
 	bool MouseOver();
 	bool MouseDown();
@@ -32,6 +26,7 @@ public:
 	void Update();
 	void OnClick();
 	void (*function)();
+
 private:
 	bool m_hide = false;
 	bool m_mouseHeld = false;

@@ -19,13 +19,11 @@ void Text::Display(vec2 pos)
 SDL_Texture* Text::LoadFont(const std::string& fontPath, int fontSize, const std::string& messageText, const SDL_Color& color)
 {
     TTF_Font* font = TTF_OpenFont(fontPath.c_str(), fontSize);
-    std::cout << TTF_GetError() << std::endl;
 
     if (font == nullptr)
         std::cout << "Failed to load font for " + fontPath << std::endl;
 
     SDL_Surface* textSurface = TTF_RenderText_Solid(font, messageText.c_str(), color);
-    std::cout << SDL_GetError() << std::endl;
 
     if (textSurface == nullptr)
         std::cout << "Failed to create text surface for " + fontPath << std::endl;

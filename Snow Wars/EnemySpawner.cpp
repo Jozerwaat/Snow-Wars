@@ -74,11 +74,12 @@ void EnemySpawner::CheckCollision(int index)
 
 void EnemySpawner::PoolAll()
 {
-	for (int i = m_enemies.size() - 1; i > 0; i--)
+	for (int i = m_enemies.size() - 1; i >= 0; i--)
 	{
 		pool.Pool(m_enemies[i]);
 		m_enemies.pop_back();
 	}
+	m_currentTime = 0;
 }
 
 void EnemySpawner::Spawn(vec2 direction, vec2 position)
@@ -92,7 +93,8 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 	enemy->SetRadius(25);
 	enemy->Init(position, direction, speed);
 	enemy->SetHealth(3);
-
+	std::cout << "X: " << position.x << " Y: " << position.y << "Enemy Y: " << enemy->GetCollider()->GetTransform()->GetPosition().y<< std::endl;
+	
 }
 
 void EnemySpawner::CalculateSpawnPosition()

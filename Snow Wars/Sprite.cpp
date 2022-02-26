@@ -6,7 +6,6 @@ Sprite::Sprite(const std::string& imagePath, vec2 size) :
 	m_size(size)
 {
 	SDL_Surface* surface = IMG_Load(imagePath.c_str());
-	std::cout << SDL_GetError() << std::endl;
 
 	if (size.x == 0 && size.y == 0) 
 	{
@@ -18,7 +17,6 @@ Sprite::Sprite(const std::string& imagePath, vec2 size) :
 		std::cout << "Failed to create surface for " + imagePath << std::endl;
 
 	m_texture = SDL_CreateTextureFromSurface(Window::m_renderer, surface);
-	std::cout << SDL_GetError() << std::endl;
 
 	if (m_texture == NULL)
 		std::cout << "Failed to create texture for " + imagePath << std::endl;

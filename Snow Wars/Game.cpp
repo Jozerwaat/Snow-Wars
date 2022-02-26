@@ -46,9 +46,16 @@ void Game::Update()
 	if (input.Instance().QuitGame())
 		m_quitGame = true;
 
+
 	if (m_gameOver)
 		return;
 
+	if (player.GetHealth() <= 0)
+	{
+		GameOver();
+		return;
+	}
+	healthbar.SetFrame(player.GetHealth());
 	healthbar.Render(vec2(window.GetWidth() - 145, window.GetHeight() - 45));
 
 	Timer::Instance().Tick();
@@ -60,6 +67,30 @@ void Game::Update()
 	//ShowFPS();
 
 
+}
+
+void Game::Reset()
+{
+	if (m_gameOver == false)
+		return;
+
+	Timer::Instance().Reset();
+	player.SetHealth(3);
+	m_gameOver = false;
+}
+
+void Game::GameOver()
+{
+	//scoreController.Instance().Reset();
+	healthbar.SetFrame(0);
+	menuController.Show();
+	enemySpawner.PoolAll();
+	m_gameOver = true;
+}
+
+void Game::Shutdown()
+{
+	m_quitGame = true;
 }
 
 void Game::ShowFPS()

@@ -15,11 +15,11 @@ void StartGame()
 	std::cout << "Game started! " << std::endl;
 	startButton.Hide();
 	quitButton.Hide();
-	//m_game->Reset();
+	game->Reset();
 }
 void QuitGame()
 {
-	//game->Shutdown();
+	game->Shutdown();
 	SDL_Quit();
 }
 MenuController::MenuController(Window* window, Game* gam)
@@ -30,7 +30,6 @@ MenuController::MenuController(Window* window, Game* gam)
 	quitButton = Button(vec2(window->GetWidth() / 2, (window->GetHeight() / 2) + 60), "assets/QuitButton.tga", 2);
 	startButton.function = StartGame;
 	quitButton.function = QuitGame;
-
 }
 
 void MenuController::Show()
