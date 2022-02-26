@@ -39,8 +39,8 @@ MenuController::MenuController(Window* window, Game* gam)
 	wind = window;
 	game = gam;
 	m_window = window;
-	startButton = Button(vec2(window->GetWidth() / 2, (window->GetHeight() / 2) - 60), "assets/StartButton.tga", 2);
-	quitButton = Button(vec2(window->GetWidth() / 2, (window->GetHeight() / 2) + 60), "assets/QuitButton.tga", 2);
+	startButton = Button(vec2(window->GetWidth() / 2, (window->GetHeight() / 2) - 60), "assets/StartButton.png", 2);
+	quitButton = Button(vec2(window->GetWidth() / 2, (window->GetHeight() / 2) + 60), "assets/QuitButton.png", 2);
 	fullScreenButton = Button(vec2(window->GetWidth() - 100, 100), "assets/FullscreenButton.png", 2);
 	startButton.function = StartGame;
 	quitButton.function = QuitGame;

@@ -21,11 +21,11 @@ MenuController menuController;
 SnowballController snowballController(window);
 EnemySpawner enemySpawner;
 
-Player player(vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Assets/Snowman.png", 1);
+Player player(&window, vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Assets/Snowman.png", 14);
 Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
 Text gameTitle("Assets/GameFont.TTF", 100, "Snow Wars", { 0,200,255,255 });
 
-Renderer healthbar("Assets/Healthbar.tga", 4);
+Renderer healthbar("Assets/Healthbar.png", 4);
 Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
 
 void Game::Init()

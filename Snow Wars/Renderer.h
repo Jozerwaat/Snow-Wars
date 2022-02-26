@@ -27,7 +27,7 @@ public:
 	void Render(const vec2& position);
 	void Render(const vec2& position, const float angle);
 	
-	void Animate(float speed);
+	void Animate(float speed, bool loopBack = false);
 	void Resize(vec2 newSize, vec2 newPosition = NULL);
 
 	inline void SetFrame(int frame) { m_currentFrame = frame;}
@@ -43,5 +43,6 @@ private:
 	int m_currentFrame = 0;
 
 	float m_currentTime = 0;
+	bool m_loopBack = false;
 };
 

@@ -32,7 +32,7 @@ void Player::Init(SnowballController& controller)
 void Player::Update()
 {
 	m_renderer.Render(m_transform.GetPosition(), aimAngle + 90);
-
+	m_renderer.Animate(40, true);
 	Move();
 	Aim();
 
@@ -75,6 +75,18 @@ void Player::Move()
 
 	if (movement.x == 0 && movement.y == 0)
 		return;
+
+	if (m_transform.GetPosition().x  >= (m_window->GetWidth() - 45))
+		m_transform.GetPosition().x = m_window->GetWidth() - 45;
+
+	if (m_transform.GetPosition().x <= (45))
+		m_transform.GetPosition().x = 45;
+
+	if (m_transform.GetPosition().y >= (m_window->GetHeight() - 45))
+		m_transform.GetPosition().y = m_window->GetHeight() - 45;
+
+	if (m_transform.GetPosition().y <= (45))
+		m_transform.GetPosition().y = 45;
 
 	m_transform.Translate((movement.normalized() * speed) * timer.ElapsedSeconds());
 }

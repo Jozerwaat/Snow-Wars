@@ -7,16 +7,23 @@
 static const Timer& timer = Timer::Instance();
 static const ScoreController& scoreController = ScoreController::Instance();
 
-static char spritePath[] = "assets/IceBall.tga";
+static char spritePath[] = "assets/IceBall.png";
 
 static ObjectPool<Enemy> pool;
 static const int speed = 500;
-static const int spawnSpeed = 4; //Enemie spawned per second
+static  int spawnSpeed = 4; //Enemie spawned per second
+static float spawnSpeedTimeIncrease = 30;
 
 void EnemySpawner::Update()
 {
+	if (timer.TotalTimeSeconds() > spawnSpeedTimeIncrease) 
+	{
+		spawnSpeedTimeIncrease *= 2;
+		spawnSpeed += 1;
+	}
 
 	m_currentTime += timer.ElapsedSeconds();
+	
 	if ((m_currentTime * spawnSpeed) > 1)
 	{
 		m_currentTime = 0;
@@ -80,6 +87,8 @@ void EnemySpawner::PoolAll()
 		m_enemies.pop_back();
 	}
 	m_currentTime = 0;
+	spawnSpeed = 4;
+	spawnSpeedTimeIncrease = 30;
 }
 
 void EnemySpawner::Spawn(vec2 direction, vec2 position)
