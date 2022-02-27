@@ -19,11 +19,6 @@ public:
 
 	void Init(SnowballController& snowballController);
 private:
-	void CalculateAimAngle();
-	void Move();
-	void Shoot();
-	void Aim();
-
 	Window* m_window;
 	int m_health = 3;
 };

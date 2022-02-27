@@ -105,6 +105,9 @@
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAim.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec.h">
@@ -174,6 +177,9 @@
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMovement.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAim.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
   </ItemGroup>
