@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Timer.h"
 #include "Sprite.h"
-#include "Text.h"
+
 #include "Renderer.h"
 #include "MenuController.h"
 #include "SnowballController.h"
@@ -23,13 +23,13 @@ EnemySpawner enemySpawner;
 
 Player player(&window, vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Assets/Snowman.png", 14);
 Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
-Text gameTitle("Assets/GameFont.TTF", 100, "Snow Wars", { 0,200,255,255 });
 
 Renderer healthbar("Assets/Healthbar.png", 4);
 Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
 
 void Game::Init()
 {
+	menuController.~MenuController();
 	menuController = MenuController(&window, this);
 	player.Init(snowballController);
 	player.SetHealth(3);
@@ -39,10 +39,8 @@ void Game::Init()
 
 void Game::Update()
 {
-
 	window.Render();
 	backgroundRend.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
-	menuController.Update();
 	input.Instance().Update();
 
 	if (input.Instance().QuitGame())
@@ -50,7 +48,7 @@ void Game::Update()
 
 	if (m_gameOver)
 	{
-		gameTitle.Display(vec2((window.GetWidth() / 2) - 250, 100));
+		menuController.Update();
 		mouse.Update();
 		return;
 	}
@@ -60,20 +58,16 @@ void Game::Update()
 		GameOver();
 		return;
 	}
-	healthbar.SetFrame(player.GetHealth());
-	healthbar.Render(vec2(window.GetWidth() - 145, window.GetHeight() - 45));
 
 	Timer::Instance().Tick();
+	healthbar.SetFrame(player.GetHealth());
+	healthbar.Render(vec2(window.GetWidth() - 145, window.GetHeight() - 45));
 
 	snowballController.UpdateSnowballs();
 	player.Update();
 	enemySpawner.Update();
-	//gameTitle.Display(vec2((window.GetWidth() / 2) -250, 100));
-	//ShowFPS();
 	scoreController.Instance().DisplayScore(vec2(10, 10));
 	mouse.Update();
-
-
 }
 
 void Game::Reset()
@@ -114,11 +108,4 @@ void Game::FullScreen()
 	window.Resize();
 	backgroundRend.~Renderer();
 	new(&backgroundRend) Renderer("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
-	//backgroundRend.
-	/*
-	SomeClass object(1, 2, 3);
-...
-object.~SomeClass(); // destruct
-new(&object) SomeClass(4, 5, 6); /
-	*/ 
 }

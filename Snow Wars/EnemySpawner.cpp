@@ -11,7 +11,7 @@ static char spritePath[] = "assets/IceBall.png";
 
 static ObjectPool<Enemy> pool;
 static const int speed = 500;
-static  int spawnSpeed = 4; //Enemie spawned per second
+static  int spawnSpeed = 4; //Enemies spawned per second
 static float spawnSpeedTimeIncrease = 30;
 
 void EnemySpawner::Update()

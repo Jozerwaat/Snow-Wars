@@ -8,8 +8,7 @@ int main(int argc, char** argv)
 	game.Init();
 
 	while (game.QuitGame() == false) 
-	{
 		game.Update();
-	}
+	
 	return 0;
 }

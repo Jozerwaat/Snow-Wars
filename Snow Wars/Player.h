@@ -17,10 +17,7 @@ public:
 
 	void Update() override;
 
-	Transform GetTransform() const { return m_transform; }
-
 	void Init(SnowballController& snowballController);
-
 private:
 	void CalculateAimAngle();
 	void Move();

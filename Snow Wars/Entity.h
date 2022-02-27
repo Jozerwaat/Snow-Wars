@@ -37,20 +37,12 @@ public:
 	virtual void Init() {}
 	virtual void Update() {}
 
-	void SetHealth(int health)
-	{
-		m_health = health;
-	}
+	inline void SetHealth(int health) { m_health = health; }
+	inline int& GetHealth() { return m_health; }
 
-	void TakeDamage()
-	{
-		m_health--;
-	}
+	inline void TakeDamage() { m_health--; }
 
-	int& GetHealth()
-	{
-		return m_health;
-	}
+	Transform GetTransform() const { return m_transform; }
 
 protected:
 	Transform m_transform;

@@ -102,6 +102,9 @@
     <ClCompile Include="MenuController.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMovement.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec.h">
@@ -170,15 +173,8 @@
     <ClInclude Include="MenuController.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Snow Wars.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Snowman.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <ClInclude Include="PlayerMovement.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

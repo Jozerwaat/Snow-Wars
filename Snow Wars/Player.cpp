@@ -91,6 +91,7 @@ void Player::Move()
 	m_transform.Translate((movement.normalized() * speed) * timer.ElapsedSeconds());
 }
 
+
 void Player::Shoot()
 {
 	if ((currentTime * attackSpeed) > 0.4f)

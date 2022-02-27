@@ -12,27 +12,24 @@ public:
 	Renderer() = default;
 
 	Renderer(const std::string& imagePath, int frameCount, vec2 size = NULL)
-	{ 
+	{
 		m_sprite = new Sprite(imagePath, size);
 		m_frameCount = frameCount;
 		m_size = vec2(m_sprite->GetSize().x / m_frameCount, m_sprite->GetSize().y);
 	}
 	~Renderer() = default;
 
-	Sprite* GetSprite()
-	{
-		return m_sprite;
-	}
+	Sprite* GetSprite() { return m_sprite; }
 
 	void Render(const vec2& position);
 	void Render(const vec2& position, const float angle);
-	
+
 	void Animate(float speed, bool loopBack = false);
 	void Resize(vec2 newSize, vec2 newPosition = NULL);
 
-	inline void SetFrame(int frame) { m_currentFrame = frame;}
+	inline void SetFrame(int frame) { m_currentFrame = frame; }
 
-	inline vec2 GetSize() { return m_size;}
+	inline vec2 GetSize() { return m_size; }
 
 private:
 	Sprite* m_sprite = nullptr;

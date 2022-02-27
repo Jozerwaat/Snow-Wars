@@ -10,6 +10,7 @@ public:
 	MenuController() = default;
 
 	MenuController(Window* window, Game* game);
+	~MenuController() = default;
 
 	void Update();
 	void Show();
