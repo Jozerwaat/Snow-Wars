@@ -9,22 +9,26 @@ static int speed = 300;
 
 void PlayerMovement::Move()
 {
-	vec2 movement = vec2(0, 0);
+	m_moveDirection = vec2(0, 0);
 
 	if (input.Instance().KeyboardEvents()[SDL_SCANCODE_W])
-		movement.y = -1;
+		m_moveDirection.y = -1;
 	if (input.Instance().KeyboardEvents()[SDL_SCANCODE_A])
-		movement.x = -1;
+		m_moveDirection.x = -1;
 	if (input.Instance().KeyboardEvents()[SDL_SCANCODE_S])
-		movement.y = 1;
+		m_moveDirection.y = 1;
 	if (input.Instance().KeyboardEvents()[SDL_SCANCODE_D])
-		movement.x = 1;
+		m_moveDirection.x = 1;
 
-	if (movement.x == 0 && movement.y == 0)
+	if (m_moveDirection.x == 0 && m_moveDirection.y == 0)
 		return;
 
-	m_transform->Translate((movement.normalized() * speed) * timer.ElapsedSeconds());
+	m_transform->Translate((m_moveDirection.normalized() * speed) * timer.ElapsedSeconds());
 	ClipBorder();
+}
+
+void PlayerMovement::Dash()
+{
 }
 
 void PlayerMovement::ClipBorder()
@@ -40,5 +44,4 @@ void PlayerMovement::ClipBorder()
 				   
 	if (m_transform->GetPosition().y <= (45))
 		m_transform->GetPosition().y = 45;
-
 }

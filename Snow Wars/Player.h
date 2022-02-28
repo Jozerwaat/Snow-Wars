@@ -18,6 +18,11 @@ public:
 	void Update() override;
 
 	void Init(SnowballController& snowballController);
+
+	inline void SetHealth(int health) { m_health = health; }
+	inline int& GetHealth() { return m_health; }
+
+	inline void TakeDamage() { m_health--; }
 private:
 	Window* m_window;
 	int m_health = 3;

@@ -49,6 +49,12 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{7f284b33-3986-483c-a8d6-5c2ec4f6a05b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Powerups">
+      <UniqueIdentifier>{decf9175-6f17-47e1-b331-a5a0ae3f5872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Powerups">
+      <UniqueIdentifier>{65290f67-65e0-4e38-a537-abc372c7827e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -107,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="PlayerAim.cpp">
       <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup.cpp">
+      <Filter>Source Files\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerupController.cpp">
+      <Filter>Source Files\Powerups</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +193,12 @@
     </ClInclude>
     <ClInclude Include="PlayerAim.h">
       <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerupController.h">
+      <Filter>Header Files\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Header Files\Powerups</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

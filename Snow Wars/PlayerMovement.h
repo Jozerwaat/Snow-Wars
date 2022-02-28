@@ -16,8 +16,9 @@ public:
 
 	void ClipBorder();
 	void Move();
-
+	void Dash();
 private:
+	vec2 m_moveDirection = { 0,0 };
 	Window* m_window;
 	Transform* m_transform;
 };

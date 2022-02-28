@@ -64,7 +64,6 @@ void EnemySpawner::CheckCollision(int index)
 		{
 			m_snowballController->PoolSnowball(j);
 			m_enemies[index]->TakeDamage();
-
 		}
 	}
 
@@ -75,7 +74,6 @@ void EnemySpawner::CheckCollision(int index)
 		m_enemies[index]->TakeDamage();
 
 		m_player->TakeDamage();
-
 	}
 }
 

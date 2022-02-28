@@ -2,12 +2,11 @@
 #include <iostream>
 #include "Game.h"
 #include "Timer.h"
-#include "Sprite.h"
-
 #include "Renderer.h"
 #include "MenuController.h"
 #include "SnowballController.h"
 #include "ScoreController.h"
+#include "PowerupController.h"
 #include "Player.h"
 #include "Mouse.h"
 #include "EnemySpawner.h"
@@ -19,6 +18,7 @@ const static ScoreController& scoreController = ScoreController::Instance();
 
 MenuController menuController;
 SnowballController snowballController(window);
+PowerupController powerupController;
 EnemySpawner enemySpawner;
 
 Player player(&window, vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Assets/Snowman.png", 14);
@@ -63,6 +63,7 @@ void Game::Update()
 	healthbar.SetFrame(player.GetHealth());
 	healthbar.Render(vec2(window.GetWidth() - 145, window.GetHeight() - 45));
 
+	powerupController.Update();
 	snowballController.UpdateSnowballs();
 	player.Update();
 	enemySpawner.Update();
@@ -87,6 +88,7 @@ void Game::GameOver()
 	healthbar.SetFrame(0);
 	menuController.Show();
 	enemySpawner.PoolAll();
+	snowballController.PoolAll();
 	m_gameOver = true;
 }
 

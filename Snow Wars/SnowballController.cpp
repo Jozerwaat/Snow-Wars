@@ -39,3 +39,12 @@ void SnowballController::PoolSnowball(int i)
 	objectPool.Pool(m_snowballs[i]);
 	m_snowballs.erase(m_snowballs.begin() + i);
 }
+
+void SnowballController::PoolAll()
+{
+	for (int i = m_snowballs.size() - 1; i >= 0; i--)
+	{
+		objectPool.Pool(m_snowballs[i]);
+		m_snowballs.pop_back();
+	}
+}

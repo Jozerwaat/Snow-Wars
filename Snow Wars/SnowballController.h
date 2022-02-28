@@ -14,6 +14,7 @@ public:
 	std::vector<Snowball*> GetSnowballs() { return m_snowballs; }
 
 	void PoolSnowball(int index);
+	void PoolAll();
 private:
 	std::vector<Snowball*> m_snowballs;
 	Window* m_window = nullptr;

@@ -18,29 +18,14 @@ public:
 		m_instantiated = true;
 	}
 	~Entity() {}
-
-	bool IsInstantiated()
-	{
-		return m_instantiated;
-	}
-
-	virtual void SetRadius(int radius)
-	{
-		m_collider = CircleCollider(radius, &m_transform);
-	}
-
-	CircleCollider* GetCollider()
-	{
-		return &m_collider;
-	}
-
+	
 	virtual void Init() {}
 	virtual void Update() {}
+	virtual void SetRadius(int radius) { m_collider = CircleCollider(radius, &m_transform); }
 
-	inline void SetHealth(int health) { m_health = health; }
-	inline int& GetHealth() { return m_health; }
+	bool IsInstantiated() { return m_instantiated; }
 
-	inline void TakeDamage() { m_health--; }
+	CircleCollider* GetCollider() { return &m_collider; }
 
 	Transform GetTransform() const { return m_transform; }
 
@@ -49,7 +34,5 @@ protected:
 	Renderer m_renderer;
 	CircleCollider m_collider;
 	bool m_instantiated = false;
-	int m_health = 3;
-
 };
 

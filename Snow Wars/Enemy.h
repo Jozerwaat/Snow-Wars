@@ -17,11 +17,15 @@ public:
 
 	virtual void Update() override;
 	bool OutsideBounds(int screenWidth, int screenHeight);
+	inline void SetHealth(int health) { m_health = health; }
+	inline int& GetHealth() { return m_health; }
 
+	inline void TakeDamage() { m_health--; }
 
 private:
 	bool m_instantiated = false;
 	vec2 m_direction;
 	int m_speed = 1;
+	int m_health;
 };
 

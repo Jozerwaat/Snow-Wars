@@ -57,7 +57,7 @@ void Input::MouseEvents()
 	m_mousePos.y = mouseY;
 
 	if ((buttons & SDL_BUTTON_LMASK) != 0)
-		m_mouseDown = true;
+		m_leftMouseDown = true;
 	else
-		m_mouseDown = false;
+		m_leftMouseDown = false;
 }

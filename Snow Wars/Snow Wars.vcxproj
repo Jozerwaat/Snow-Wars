@@ -158,6 +158,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAim.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
+    <ClCompile Include="Powerup.cpp" />
+    <ClCompile Include="PowerupController.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ScoreController.cpp" />
     <ClCompile Include="Snowball.cpp" />
@@ -181,6 +183,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAim.h" />
     <ClInclude Include="PlayerMovement.h" />
+    <ClInclude Include="Powerup.h" />
+    <ClInclude Include="PowerupController.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ScoreController.h" />

@@ -14,6 +14,7 @@ PlayerAim playerAim;
 void Player::Init(SnowballController& controller)
 {
 	playerMovement.~PlayerMovement();
+	playerAim.~PlayerAim();
 	playerMovement = PlayerMovement(&m_transform, m_window);
 	playerAim = PlayerAim(&m_transform, controller);
 

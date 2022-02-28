@@ -16,7 +16,7 @@ public:
 	const Uint8* KeyboardEvents();
 
 	inline bool QuitGame() const { return m_quit; }
-	inline bool MouseDown() { return m_mouseDown; }
+	inline bool MouseDown() { return m_leftMouseDown; }
 	inline bool ResizeWindow() {return m_resize;}
 
 private:
@@ -28,6 +28,7 @@ private:
 	
 	bool m_quit = false;
 	bool m_resize = false;
-	bool m_mouseDown;
+	bool m_leftMouseDown = false;
+	bool m_rightMouseDown = false;
 };
 
