@@ -18,12 +18,18 @@ void PowerupController::Update()
 	for (int i = 0; i < m_spawnedPowerups.size(); i++)
 	{
 		m_spawnedPowerups[i].Update();
+
+		if (m_spawnedPowerups[i].GetCollider()->IsColliding(m_player->GetCollider())) 
+		{
+			std::cout << "Powerup" << std::endl;
+		}
 	}
 }
 
 void PowerupController::Spawn()
 {
 	Powerup powerup(CalculateSpawnPosition(),fireUpPath,1);
+	powerup.SetRadius(50);
 	m_spawnedPowerups.push_back(powerup);
 }
 

@@ -15,7 +15,7 @@ void PlayerAim::Update()
 {
 	Aim();
 
-	if (input.Instance().MouseDown())
+	if (input.Instance().LeftMouseDown())
 		Shoot();
 }
 

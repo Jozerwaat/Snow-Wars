@@ -20,7 +20,7 @@ public:
 	void Show() { m_hide = false; }
 
 	bool MouseOver();
-	bool MouseDown();
+	bool LeftMouseDown();
 
 	void MouseUp();
 	void Update();

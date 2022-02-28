@@ -16,7 +16,7 @@ bool Button::MouseOver()
 	{
 		if (mousePos.y > (position.y - heightOffset) && mousePos.y < (position.y + heightOffset))
 		{
-			if (playerInput.Instance().MouseDown() == false)
+			if (playerInput.Instance().LeftMouseDown() == false)
 				m_mouseEntered = true;
 
 			return true;
@@ -26,7 +26,7 @@ bool Button::MouseOver()
 	return false;
 }
 
-bool Button::MouseDown()
+bool Button::LeftMouseDown()
 {
 	m_renderer.SetFrame(1);
 	return false;
@@ -44,19 +44,19 @@ void Button::Update()
 
 	if (MouseOver() && m_mouseEntered)
 	{
-		if (playerInput.Instance().MouseDown())
+		if (playerInput.Instance().LeftMouseDown())
 		{
 			m_mouseHeld = true;
 			m_renderer.SetFrame(1);
 		}
-		if (playerInput.Instance().MouseDown() == false && m_mouseHeld)
+		if (playerInput.Instance().LeftMouseDown() == false && m_mouseHeld)
 		{
 			m_mouseHeld = false;
 			OnClick();
 		}
 
 	}
-	else if (MouseOver() == false || playerInput.Instance().MouseDown() == false)
+	else if (MouseOver() == false || playerInput.Instance().LeftMouseDown() == false)
 	{
 		m_mouseEntered = false;
 		m_mouseHeld = false;

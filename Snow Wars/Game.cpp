@@ -16,12 +16,13 @@ static Window window("Snow Wars", 1920, 1080);
 static const Input& input = Input::Instance();
 const static ScoreController& scoreController = ScoreController::Instance();
 
+Player player(&window, vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Assets/Snowman.png", 14);
+
 MenuController menuController;
 SnowballController snowballController(window);
-PowerupController powerupController;
+PowerupController powerupController(&player);
 EnemySpawner enemySpawner;
 
-Player player(&window, vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Assets/Snowman.png", 14);
 Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
 
 Renderer healthbar("Assets/Healthbar.png", 4);
