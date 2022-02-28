@@ -67,7 +67,7 @@ void Game::Update()
 	powerupController.Update();
 	snowballController.UpdateSnowballs();
 	player.Update();
-	enemySpawner.Update();
+	//enemySpawner.Update();
 	scoreController.Instance().DisplayScore(vec2(10, 10));
 	mouse.Update();
 }

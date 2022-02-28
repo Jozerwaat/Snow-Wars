@@ -156,7 +156,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuController.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerAim.cpp" />
+    <ClCompile Include="PlayerShooting.cpp" />
     <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="PowerupController.cpp" />
@@ -181,7 +181,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerAim.h" />
+    <ClInclude Include="PlayerShooting.h" />
     <ClInclude Include="PlayerMovement.h" />
     <ClInclude Include="Powerup.h" />
     <ClInclude Include="PowerupController.h" />

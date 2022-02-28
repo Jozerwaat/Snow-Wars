@@ -20,7 +20,7 @@ private:
 	Player* m_player = nullptr;
 	Powerup m_fireRateUp;
 	float m_currentTime = 0;
-	float m_spawnRate = 10;
+	float m_spawnRate = 5;
 
-	std::vector<Powerup> m_spawnedPowerups;
+	std::vector<Powerup*> m_spawnedPowerups;
 };

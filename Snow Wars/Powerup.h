@@ -8,7 +8,13 @@ public:
 	~Powerup() = default;
 	
 	void Update();
-
+	float GetDuration() const{ return m_duration; }
 private:
+	float m_duration;
+};
 
+enum class POWERUP_TYPE
+{
+	FIRE_RATE = 0,
+	MULTI_SHOT = 1
 };

@@ -1,4 +1,4 @@
-#include "PlayerAim.h"
+#include "PlayerShooting.h"
 #include "Input.h"
 #include "Timer.h"
 
@@ -11,15 +11,45 @@ static double piRadiant = pi / 180;
 static float currentTime = 1;
 static float attackSpeed = 3;
 
-void PlayerAim::Update()
+static float fireRatePowerupDuration = 5.0f;
+static float fireRatePowerupCurrentTime = 0;
+static bool fireRatePowerupStarted = false;
+
+void PlayerShooting::Update()
 {
 	Aim();
 
 	if (input.Instance().LeftMouseDown())
 		Shoot();
+
+	if (fireRatePowerupStarted) 
+	{
+		fireRatePowerupCurrentTime += timer.ElapsedSeconds();
+		if (fireRatePowerupCurrentTime >= fireRatePowerupDuration) 
+		{
+			fireRatePowerupStarted = false;
+			fireRatePowerupCurrentTime = 0;
+		}
+	}
 }
 
-void PlayerAim::CalculateAimAngle()
+void PlayerShooting::StartFireRatePowerup()
+{
+	/*
+	while (currentTime < duration)
+	{
+		if (attackSpeed != 7)
+			attackSpeed = 7;
+
+		currentTime += timer.ElapsedSeconds();
+	}
+
+	if (currentTime >= duration)
+		attackSpeed = 3;
+		*/
+}
+
+void PlayerShooting::CalculateAimAngle()
 {
 	vec2 position = m_transform->GetPosition();
 	vec2 mousePos = input.Instance().GetMousePos();
@@ -31,7 +61,7 @@ void PlayerAim::CalculateAimAngle()
 	m_aimAngle = ((atan2(m_aim.y, m_aim.x)) * 180) / pi;		//Convert radians to degrees
 }
 
-void PlayerAim::Shoot()
+void PlayerShooting::Shoot()
 {
 	if ((currentTime * attackSpeed) > 0.4f)
 	{
@@ -40,7 +70,7 @@ void PlayerAim::Shoot()
 	}
 }
 
-void PlayerAim::Aim()
+void PlayerShooting::Aim()
 {
 	CalculateAimAngle();
 

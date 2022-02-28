@@ -1,10 +1,12 @@
 #include <string>
 #include "PowerupController.h"
 #include "Timer.h"
+#include "ObjectPool.h"
 
 static const Timer& timer = Timer::Instance();
 static const std::string fireUpPath = "Assets/FireRatePowerUp.png";
 
+static ObjectPool<Powerup> pool;
 void PowerupController::Update()
 {
 	m_currentTime += timer.ElapsedSeconds();
@@ -17,19 +19,26 @@ void PowerupController::Update()
 
 	for (int i = 0; i < m_spawnedPowerups.size(); i++)
 	{
-		m_spawnedPowerups[i].Update();
-
-		if (m_spawnedPowerups[i].GetCollider()->IsColliding(m_player->GetCollider())) 
+		m_spawnedPowerups[i]->Update();
+		if (m_spawnedPowerups[i]->GetCollider()->IsColliding(m_player->GetCollider()))
 		{
-			std::cout << "Powerup" << std::endl;
+			pool.Pool(m_spawnedPowerups[i]);
+			m_spawnedPowerups.erase(m_spawnedPowerups.begin() + i);
+			i--;
+			
+			m_player->StartPowerUp(POWERUP_TYPE::FIRE_RATE);
 		}
 	}
 }
 
 void PowerupController::Spawn()
 {
-	Powerup powerup(CalculateSpawnPosition(),fireUpPath,1);
-	powerup.SetRadius(50);
+	Powerup* powerup = pool.Get();
+	if (powerup->IsInstantiated() == false)
+		*powerup = Powerup(CalculateSpawnPosition(), fireUpPath, 1);
+
+	powerup->SetRadius(50);
+
 	m_spawnedPowerups.push_back(powerup);
 }
 

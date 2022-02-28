@@ -111,7 +111,7 @@
     <ClCompile Include="PlayerMovement.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAim.cpp">
+    <ClCompile Include="PlayerShooting.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="Powerup.cpp">
@@ -191,7 +191,7 @@
     <ClInclude Include="PlayerMovement.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAim.h">
+    <ClInclude Include="PlayerShooting.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="PowerupController.h">

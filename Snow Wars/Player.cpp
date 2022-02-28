@@ -6,24 +6,32 @@
 #include "SnowballController.h"
 #include "Input.h"
 #include "PlayerMovement.h"
-#include "PlayerAim.h"
+#include "PlayerShooting.h"
 
 PlayerMovement playerMovement;
-PlayerAim playerAim;
+PlayerShooting playerShooting;
 
 void Player::Init(SnowballController& controller)
 {
 	playerMovement.~PlayerMovement();
-	playerAim.~PlayerAim();
+	playerShooting.~PlayerShooting();
 	playerMovement = PlayerMovement(&m_transform, m_window);
-	playerAim = PlayerAim(&m_transform, controller);
+	playerShooting = PlayerShooting(&m_transform, controller);
 
 	SetRadius(22);
 }
+void Player::StartPowerUp(POWERUP_TYPE type)
+{
+	if (type == POWERUP_TYPE::FIRE_RATE) 
+	{
+		std::cout << "start fire up powerup" << std::endl;
+		playerShooting.StartFireRatePowerup();
+	}
+}
 void Player::Update()
 {
-	m_renderer.Render(m_transform.GetPosition(), playerAim.GetAimAngle() + 90);
+	m_renderer.Render(m_transform.GetPosition(), playerShooting.GetAimAngle() + 90);
 	m_renderer.Animate(40, true);
 	playerMovement.Move();
-	playerAim.Update();
+	playerShooting.Update();
 }

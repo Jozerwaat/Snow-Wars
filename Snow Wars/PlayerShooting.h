@@ -3,19 +3,20 @@
 #include "Vec.h"
 #include "SnowballController.h"
 
-class PlayerAim
+class PlayerShooting
 {
 public:
-	PlayerAim() = default;
-	PlayerAim(Transform * transform, SnowballController& snowballController)
+	PlayerShooting() = default;
+	PlayerShooting(Transform * transform, SnowballController& snowballController)
 	{
 		m_transform = transform;
 		m_snowballController = &snowballController;
 	}
-	~PlayerAim() = default;
+	~PlayerShooting() = default;
 
 	float GetAimAngle() const { return m_aimAngle; }
 	void Update();
+	void StartFireRatePowerup();
 
 private:
 	void CalculateAimAngle();

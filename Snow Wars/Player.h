@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Window.h"
+#include "Powerup.h"
 
 class SnowballController;
 class Transform;
@@ -23,6 +24,8 @@ public:
 	inline int& GetHealth() { return m_health; }
 
 	inline void TakeDamage() { m_health--; }
+
+	void StartPowerUp(POWERUP_TYPE type);
 private:
 	Window* m_window;
 	int m_health = 3;
