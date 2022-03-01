@@ -24,29 +24,23 @@ void PlayerShooting::Update()
 
 	if (fireRatePowerupStarted) 
 	{
+		if (attackSpeed != 7)
+			attackSpeed = 7;
+
 		fireRatePowerupCurrentTime += timer.ElapsedSeconds();
 		if (fireRatePowerupCurrentTime >= fireRatePowerupDuration) 
 		{
 			fireRatePowerupStarted = false;
 			fireRatePowerupCurrentTime = 0;
+			attackSpeed = 3;
 		}
 	}
 }
 
 void PlayerShooting::StartFireRatePowerup()
 {
-	/*
-	while (currentTime < duration)
-	{
-		if (attackSpeed != 7)
-			attackSpeed = 7;
-
-		currentTime += timer.ElapsedSeconds();
-	}
-
-	if (currentTime >= duration)
-		attackSpeed = 3;
-		*/
+	fireRatePowerupStarted = true;
+	fireRatePowerupCurrentTime = 0;
 }
 
 void PlayerShooting::CalculateAimAngle()

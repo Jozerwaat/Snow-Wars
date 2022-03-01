@@ -40,14 +40,15 @@ void PowerupController::Spawn()
 	powerup->SetRadius(50);
 
 	m_spawnedPowerups.push_back(powerup);
+	m_spawnRate = 10 + (-4 + (rand() % 8));
 }
 
 vec2 PowerupController::CalculateSpawnPosition()
 {
 	vec2 spawnPosition = { 100,100 };
 
-	spawnPosition.x = 100 + rand() % 1000;
-	spawnPosition.y = 100 + rand() % 500;
+	spawnPosition.x = 200 + (rand() % (m_window->GetWidth() - 400));
+	spawnPosition.y = 200 + (rand() % (m_window->GetHeight() - 400));
 
 	return spawnPosition;
 }

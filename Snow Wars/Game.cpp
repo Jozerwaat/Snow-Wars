@@ -20,7 +20,7 @@ Player player(&window, vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Ass
 
 MenuController menuController;
 SnowballController snowballController(window);
-PowerupController powerupController(&player);
+PowerupController powerupController(&window, &player);
 EnemySpawner enemySpawner;
 
 Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
@@ -67,7 +67,7 @@ void Game::Update()
 	powerupController.Update();
 	snowballController.UpdateSnowballs();
 	player.Update();
-	//enemySpawner.Update();
+	enemySpawner.Update();
 	scoreController.Instance().DisplayScore(vec2(10, 10));
 	mouse.Update();
 }
