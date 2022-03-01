@@ -24,7 +24,6 @@ void Player::StartPowerUp(POWERUP_TYPE type)
 {
 	if (type == POWERUP_TYPE::FIRE_RATE) 
 	{
-		std::cout << "start fire up powerup" << std::endl;
 		playerShooting.StartFireRatePowerup();
 	}
 }

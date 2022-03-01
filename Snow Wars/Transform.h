@@ -9,7 +9,7 @@ public:
 
 	Transform(vec2 position) { m_position = position; }
 
-	inline vec2& GetPosition() { return m_position; }
+	vec2& GetPosition() { return m_position; }
 	inline void Translate(vec2 direction) { m_position += direction; }
 
 protected:

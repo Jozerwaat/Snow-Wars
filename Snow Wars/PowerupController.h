@@ -15,6 +15,8 @@ public:
 	void Update();
 
 	void Spawn();
+	void Reset();
+	void PoolAll();
 
 private:
 	vec2 CalculateSpawnPosition();

@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <time.h>
 #include "Game.h"
 #include "Timer.h"
 #include "Renderer.h"
@@ -30,6 +31,7 @@ Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), wi
 
 void Game::Init()
 {
+	srand(std::time(0));
 	menuController.~MenuController();
 	menuController = MenuController(&window, this);
 	player.Init(snowballController);
@@ -43,6 +45,7 @@ void Game::Update()
 	window.Render();
 	backgroundRend.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
 	input.Instance().Update();
+	scoreController.Instance().DisplayScore(vec2(10, 10));
 
 	if (input.Instance().QuitGame())
 		m_quitGame = true;
@@ -68,7 +71,6 @@ void Game::Update()
 	snowballController.UpdateSnowballs();
 	player.Update();
 	enemySpawner.Update();
-	scoreController.Instance().DisplayScore(vec2(10, 10));
 	mouse.Update();
 }
 
@@ -78,6 +80,8 @@ void Game::Reset()
 		return;
 
 	Timer::Instance().Reset();
+	scoreController.Instance().Reset();
+
 	player.SetHealth(3);
 	player.GetCollider()->GetTransform()->GetPosition() = vec2(window.GetWidth() / 2, window.GetHeight() / 2);
 	m_gameOver = false;
@@ -85,11 +89,11 @@ void Game::Reset()
 
 void Game::GameOver()
 {
-	scoreController.Instance().Reset();
 	healthbar.SetFrame(0);
 	menuController.Show();
 	enemySpawner.PoolAll();
 	snowballController.PoolAll();
+	powerupController.Reset();
 	m_gameOver = true;
 }
 

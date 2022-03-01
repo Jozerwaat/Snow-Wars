@@ -27,7 +27,7 @@ public:
 
 	CircleCollider* GetCollider() { return &m_collider; }
 
-	Transform GetTransform() const { return m_transform; }
+	Transform* GetTransform() { return &m_transform; }
 
 protected:
 	Transform m_transform;

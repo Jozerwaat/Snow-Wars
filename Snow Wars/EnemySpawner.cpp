@@ -11,7 +11,7 @@ static char spritePath[] = "assets/IceBall.png";
 
 static ObjectPool<Enemy> pool;
 static const int speed = 500;
-static  int spawnSpeed = 3; //Enemies spawned per second
+static float spawnSpeed = 2.0f; //Enemies spawned per second
 static float spawnSpeedTimeIncrease = 30;
 
 void EnemySpawner::Update()
@@ -85,7 +85,7 @@ void EnemySpawner::PoolAll()
 		m_enemies.pop_back();
 	}
 	m_currentTime = 0;
-	spawnSpeed = 4;
+	spawnSpeed = 2.0f;
 	spawnSpeedTimeIncrease = 30;
 }
 
@@ -155,7 +155,7 @@ void EnemySpawner::CalculateSpawnPosition()
 	}
 
 	if (isHoming)
-		randomDir = (m_player->GetTransform().GetPosition() - randomPos).normalized();
+		randomDir = (m_player->GetTransform()->GetPosition() - randomPos).normalized();
 
 	Spawn(randomDir, randomPos);
 }

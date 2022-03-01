@@ -35,12 +35,12 @@ void PowerupController::Spawn()
 {
 	Powerup* powerup = pool.Get();
 	if (powerup->IsInstantiated() == false)
-		*powerup = Powerup(CalculateSpawnPosition(), fireUpPath, 1);
+		*powerup = Powerup(CalculateSpawnPosition(), fireUpPath, 2);
 
 	powerup->SetRadius(50);
-
+	powerup->GetTransform()->GetPosition() = CalculateSpawnPosition();
 	m_spawnedPowerups.push_back(powerup);
-	m_spawnRate = 10 + (-4 + (rand() % 8));
+	m_spawnRate = 14 + (-5 + (rand() % 10));
 }
 
 vec2 PowerupController::CalculateSpawnPosition()
@@ -51,4 +51,20 @@ vec2 PowerupController::CalculateSpawnPosition()
 	spawnPosition.y = 200 + (rand() % (m_window->GetHeight() - 400));
 
 	return spawnPosition;
+}
+
+void PowerupController::Reset()
+{
+	m_currentTime = 0;
+	m_spawnRate = 14 + (-5 + (rand() % 10));
+	PoolAll();
+}
+
+void PowerupController::PoolAll()
+{
+	for (int i = m_spawnedPowerups.size() - 1; i >= 0; i--)
+	{
+		pool.Pool(m_spawnedPowerups[i]);
+		m_spawnedPowerups.pop_back();
+	}
 }
