@@ -44,6 +44,7 @@ void Player::Reset()
 	invincibilityTime = 0;
 	visibilityTime = 0.2f;
 	spritevisible = false;
+	playerShooting.Reset();
 }
 void Player::StartPowerUp(POWERUP_TYPE type)
 {

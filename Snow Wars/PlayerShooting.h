@@ -18,6 +18,7 @@ public:
 	void Update();
 	void StartFireRatePowerup();
 	void StartMultiShotPowerup();
+	void Reset();
 
 private:
 	void CalculateAimAngle();

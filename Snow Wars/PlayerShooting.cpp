@@ -64,6 +64,15 @@ void PlayerShooting::StartMultiShotPowerup()
 	multiShotPowerupCurrentTime = 0;
 }
 
+void PlayerShooting::Reset()
+{
+	fireRatePowerupStarted = false;
+	fireRatePowerupCurrentTime = 0;
+	attackSpeed = 3;
+	multiShotPowerupStarted = false;
+	multiShotPowerupCurrentTime = 0;
+}
+
 void PlayerShooting::CalculateAimAngle()
 {
 	vec2 position = m_transform->GetPosition();
