@@ -22,10 +22,10 @@ void Player::Init(SnowballController& controller)
 }
 void Player::StartPowerUp(POWERUP_TYPE type)
 {
-	if (type == POWERUP_TYPE::FIRE_RATE) 
-	{
+	if (type == POWERUP_TYPE::FIRE_RATE)
 		playerShooting.StartFireRatePowerup();
-	}
+	if (type == POWERUP_TYPE::MULTI_SHOT)
+		playerShooting.StartMultiShotPowerup();
 }
 void Player::Update()
 {

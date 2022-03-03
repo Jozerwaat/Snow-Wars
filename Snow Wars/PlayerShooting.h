@@ -17,6 +17,7 @@ public:
 	float GetAimAngle() const { return m_aimAngle; }
 	void Update();
 	void StartFireRatePowerup();
+	void StartMultiShotPowerup();
 
 private:
 	void CalculateAimAngle();
@@ -26,5 +27,5 @@ private:
 	SnowballController* m_snowballController;
 	Transform* m_transform;
 	vec2 m_aim;
-	float m_aimAngle;
+	float m_aimAngle = 0;
 };

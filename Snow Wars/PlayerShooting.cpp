@@ -15,6 +15,10 @@ static float fireRatePowerupDuration = 5.0f;
 static float fireRatePowerupCurrentTime = 0;
 static bool fireRatePowerupStarted = false;
 
+static float multiShotPowerupDuration = 7.0f;
+static float multiShotPowerupCurrentTime = 0;
+static bool multiShotPowerupStarted = false;
+
 void PlayerShooting::Update()
 {
 	Aim();
@@ -22,17 +26,28 @@ void PlayerShooting::Update()
 	if (input.Instance().LeftMouseDown())
 		Shoot();
 
-	if (fireRatePowerupStarted) 
+	if (fireRatePowerupStarted)
 	{
 		if (attackSpeed != 7)
 			attackSpeed = 7;
 
 		fireRatePowerupCurrentTime += timer.ElapsedSeconds();
-		if (fireRatePowerupCurrentTime >= fireRatePowerupDuration) 
+		if (fireRatePowerupCurrentTime >= fireRatePowerupDuration)
 		{
 			fireRatePowerupStarted = false;
 			fireRatePowerupCurrentTime = 0;
 			attackSpeed = 3;
+		}
+	}
+
+	if (multiShotPowerupStarted)
+	{
+
+		multiShotPowerupCurrentTime += timer.ElapsedSeconds();
+		if (multiShotPowerupCurrentTime >= multiShotPowerupDuration)
+		{
+			multiShotPowerupStarted = false;
+			multiShotPowerupCurrentTime = 0;
 		}
 	}
 }
@@ -43,6 +58,12 @@ void PlayerShooting::StartFireRatePowerup()
 	fireRatePowerupCurrentTime = 0;
 }
 
+void PlayerShooting::StartMultiShotPowerup()
+{
+	multiShotPowerupStarted = true;
+	multiShotPowerupCurrentTime = 0;
+}
+
 void PlayerShooting::CalculateAimAngle()
 {
 	vec2 position = m_transform->GetPosition();
@@ -51,8 +72,8 @@ void PlayerShooting::CalculateAimAngle()
 	m_aim.x = mousePos.x - position.x;
 	m_aim.y = mousePos.y - position.y;
 
-	m_aim = m_aim.normalize(m_aim) * 100;						//Multiply the aim direction 100 to change the arrow length
-	m_aimAngle = ((atan2(m_aim.y, m_aim.x)) * 180) / pi;		//Convert radians to degrees
+	m_aim = m_aim.normalize(m_aim);
+	m_aimAngle = (((atan2(-m_aim.y, -m_aim.x)) * 180) / pi ) + 180;		//Convert radians to 360 degrees, negate the x and y and add 180 to get a 360 angle
 }
 
 void PlayerShooting::Shoot()
@@ -60,7 +81,22 @@ void PlayerShooting::Shoot()
 	if ((currentTime * attackSpeed) > 0.4f)
 	{
 		currentTime = 0;
-		m_snowballController->SpawnSnowball(m_aim.normalized(), m_transform->GetPosition());
+
+		if (multiShotPowerupStarted == false)
+			m_snowballController->SpawnSnowball(m_aim.normalized(), m_transform->GetPosition());
+		else if(multiShotPowerupStarted)
+		{
+			float angleOffset = -15.0f;
+			for (int i = 0; i < 3; i++)
+			{
+				vec2 directionOffset = { 0,0 };
+				directionOffset.x = cos((m_aimAngle + angleOffset) * piRadiant);
+				directionOffset.y = sin((m_aimAngle + angleOffset) * piRadiant);
+				angleOffset += 15.0f;
+				m_snowballController->SpawnSnowball(directionOffset, m_transform->GetPosition());
+
+			}
+		}
 	}
 }
 
