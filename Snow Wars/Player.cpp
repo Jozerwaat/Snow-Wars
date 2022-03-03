@@ -7,9 +7,9 @@
 #include "Input.h"
 #include "PlayerMovement.h"
 #include "PlayerShooting.h"
-
 PlayerMovement playerMovement;
 PlayerShooting playerShooting;
+
 
 void Player::Init(SnowballController& controller)
 {

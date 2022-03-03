@@ -69,9 +69,8 @@ void EnemySpawner::CheckCollision(int index)
 
 	if (m_enemies[index]->GetCollider()->IsColliding(m_player->GetCollider()))
 	{
-		m_enemies[index]->TakeDamage();
-		m_enemies[index]->TakeDamage();
-		m_enemies[index]->TakeDamage();
+		pool.Pool(m_enemies[index]);
+		m_enemies.erase(m_enemies.begin() + index);
 
 		m_player->TakeDamage();
 	}

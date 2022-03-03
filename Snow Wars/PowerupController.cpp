@@ -5,6 +5,7 @@
 
 static const Timer& timer = Timer::Instance();
 static const std::string fireUpPath = "Assets/FireRatePowerUp.png";
+static const std::string multiShotPath = "Assets/MultiShotPowerup.png";
 
 static ObjectPool<Powerup> pool;
 void PowerupController::Update()
@@ -22,21 +23,25 @@ void PowerupController::Update()
 		m_spawnedPowerups[i]->Update();
 		if (m_spawnedPowerups[i]->GetCollider()->IsColliding(m_player->GetCollider()))
 		{
+			m_player->StartPowerUp(m_spawnedPowerups[i]->GetPowerUpType());
 			pool.Pool(m_spawnedPowerups[i]);
 			m_spawnedPowerups.erase(m_spawnedPowerups.begin() + i);
 			i--;
-			
-			m_player->StartPowerUp(POWERUP_TYPE::FIRE_RATE);
+
 		}
 	}
 }
 
 void PowerupController::Spawn()
 {
+	int powerupType = rand() % 1;
+
+
 	Powerup* powerup = pool.Get();
 	if (powerup->IsInstantiated() == false)
 		*powerup = Powerup(CalculateSpawnPosition(), fireUpPath, 2);
 
+	powerup->SetType(POWERUP_TYPE::FIRE_RATE);
 	powerup->SetRadius(50);
 	powerup->GetTransform()->GetPosition() = CalculateSpawnPosition();
 	m_spawnedPowerups.push_back(powerup);
