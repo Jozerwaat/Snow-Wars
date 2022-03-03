@@ -7,9 +7,16 @@
 #include "Input.h"
 #include "PlayerMovement.h"
 #include "PlayerShooting.h"
+
+static const Timer& timer = Timer::Instance();
+
 PlayerMovement playerMovement;
 PlayerShooting playerShooting;
 
+static float invincibilityDuration = 3;
+static float invincibilityTime = 0;
+static float visibilityTime = 0.2f;
+static bool spritevisible = false;
 
 void Player::Init(SnowballController& controller)
 {
@@ -20,6 +27,24 @@ void Player::Init(SnowballController& controller)
 
 	SetRadius(22);
 }
+void Player::TakeDamage()
+{
+	if (m_isInvincible)
+		return;
+
+	m_health--;
+	m_isInvincible = true;
+	invincibilityTime = 0;
+}
+void Player::Reset()
+{
+	m_health = 3;
+	m_isInvincible = false;
+	invincibilityDuration = 3;
+	invincibilityTime = 0;
+	visibilityTime = 0.2f;
+	spritevisible = false;
+}
 void Player::StartPowerUp(POWERUP_TYPE type)
 {
 	if (type == POWERUP_TYPE::FIRE_RATE)
@@ -29,7 +54,29 @@ void Player::StartPowerUp(POWERUP_TYPE type)
 }
 void Player::Update()
 {
-	m_renderer.Render(m_transform.GetPosition(), playerShooting.GetAimAngle() + 90);
+	if (m_isInvincible)
+	{
+		invincibilityTime += timer.ElapsedSeconds();
+
+		if (invincibilityTime > visibilityTime)
+		{
+			visibilityTime += 0.2f;
+			spritevisible = !spritevisible;
+		}
+		if(spritevisible)
+			m_renderer.Render(m_transform.GetPosition(), playerShooting.GetAimAngle() + 90);
+
+		if (invincibilityTime >= invincibilityDuration) 
+		{
+			m_isInvincible = false;
+			spritevisible = false;
+			visibilityTime = 0.2f;
+		}
+	}
+	else
+	{
+		m_renderer.Render(m_transform.GetPosition(), playerShooting.GetAimAngle() + 90);
+	}
 	m_renderer.Animate(40, true);
 	playerMovement.Move();
 	playerShooting.Update();

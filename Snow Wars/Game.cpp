@@ -82,7 +82,7 @@ void Game::Reset()
 	Timer::Instance().Reset();
 	scoreController.Instance().Reset();
 
-	player.SetHealth(3);
+	player.Reset();
 	player.GetCollider()->GetTransform()->GetPosition() = vec2(window.GetWidth() / 2, window.GetHeight() / 2);
 	m_gameOver = false;
 }

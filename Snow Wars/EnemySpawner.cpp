@@ -69,6 +69,9 @@ void EnemySpawner::CheckCollision(int index)
 
 	if (m_enemies[index]->GetCollider()->IsColliding(m_player->GetCollider()))
 	{
+		if (m_player->IsInvincible())
+			return;
+
 		pool.Pool(m_enemies[index]);
 		m_enemies.erase(m_enemies.begin() + index);
 

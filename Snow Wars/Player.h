@@ -11,7 +11,7 @@ class Player : public Entity
 public:
 	Player() = default;
 
-	Player(Window* window, vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size) 
+	Player(Window* window, vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size)
 	{
 		m_window = window;
 	}
@@ -22,12 +22,13 @@ public:
 
 	inline void SetHealth(int health) { m_health = health; }
 	inline int& GetHealth() { return m_health; }
-
-	inline void TakeDamage() { m_health--; }
-
+	inline bool IsInvincible() { return m_isInvincible; }
+	void TakeDamage();
+	void Reset();
 	void StartPowerUp(POWERUP_TYPE type);
 private:
 	Window* m_window;
 	int m_health = 3;
+	bool m_isInvincible;
 };
 
