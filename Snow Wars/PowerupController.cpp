@@ -11,7 +11,7 @@ void PowerupController::Update()
 {
 	m_currentTime += timer.ElapsedSeconds();
 
-	if (m_currentTime > m_spawnRate)
+	if (m_currentTime > 5)
 	{
 		m_currentTime = 0;
 		Spawn();

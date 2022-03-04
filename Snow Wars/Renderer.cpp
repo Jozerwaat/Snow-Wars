@@ -46,7 +46,7 @@ void Renderer::Render(const vec2& position, const float angle)
 	SDL_RenderCopyEx(Window::m_renderer, m_sprite->GetTexture(), &frame, &image, angle, &point, SDL_FLIP_NONE);
 }
 
-void Renderer::Animate(float speed, bool animateBack)
+void Renderer::Animate(float speed, bool animateBack, bool loop)
 {
 	m_currentTime += (speed * timer.ElapsedSeconds());
 	if (m_currentTime > 1)
@@ -60,7 +60,7 @@ void Renderer::Animate(float speed, bool animateBack)
 			m_currentFrame -= 1;
 	}
 
-	if (animateBack == false && m_currentFrame >= m_frameCount)
+	if (loop && animateBack == false && m_currentFrame >= m_frameCount)
 		m_currentFrame = 0;
 
 	if (animateBack)

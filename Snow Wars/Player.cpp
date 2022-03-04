@@ -23,7 +23,7 @@ void Player::Init(SnowballController& controller)
 	playerMovement.~PlayerMovement();
 	playerShooting.~PlayerShooting();
 	playerMovement = PlayerMovement(&m_transform, m_window);
-	playerShooting = PlayerShooting(&m_transform, controller);
+	playerShooting = PlayerShooting(&m_transform, controller, this);
 
 	SetRadius(22);
 }

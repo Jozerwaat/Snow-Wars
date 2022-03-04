@@ -70,7 +70,7 @@ void Game::Update()
 	powerupController.Update();
 	snowballController.UpdateSnowballs();
 	player.Update();
-	enemySpawner.Update();
+	//enemySpawner.Update();
 	mouse.Update();
 }
 

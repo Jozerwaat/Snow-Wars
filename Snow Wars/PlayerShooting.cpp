@@ -15,9 +15,12 @@ static float fireRatePowerupDuration = 5.0f;
 static float fireRatePowerupCurrentTime = 0;
 static bool fireRatePowerupStarted = false;
 
-static float multiShotPowerupDuration = 7.0f;
+static float multiShotPowerupDuration = 8.0f;
 static float multiShotPowerupCurrentTime = 0;
 static bool multiShotPowerupStarted = false;
+
+static Renderer fireRateRenderer("assets/FireRatePowerupCooldown.png",8);
+static Renderer multiShotRenderer("assets/MultiShotPowerupCooldown.png", 8);
 
 void PlayerShooting::Update()
 {
@@ -32,6 +35,9 @@ void PlayerShooting::Update()
 			attackSpeed = 7;
 
 		fireRatePowerupCurrentTime += timer.ElapsedSeconds();
+		fireRateRenderer.Render(vec2(m_player->GetTransform()->GetPosition().x, m_player->GetTransform()->GetPosition().y - 60));
+		fireRateRenderer.Animate(8 / fireRatePowerupDuration,false,false);
+
 		if (fireRatePowerupCurrentTime >= fireRatePowerupDuration)
 		{
 			fireRatePowerupStarted = false;
@@ -42,8 +48,10 @@ void PlayerShooting::Update()
 
 	if (multiShotPowerupStarted)
 	{
-
 		multiShotPowerupCurrentTime += timer.ElapsedSeconds();
+		multiShotRenderer.Render(vec2(m_player->GetTransform()->GetPosition().x, m_player->GetTransform()->GetPosition().y + 60));
+		multiShotRenderer.Animate(8 / multiShotPowerupDuration, false, false);
+	
 		if (multiShotPowerupCurrentTime >= multiShotPowerupDuration)
 		{
 			multiShotPowerupStarted = false;
@@ -56,12 +64,14 @@ void PlayerShooting::StartFireRatePowerup()
 {
 	fireRatePowerupStarted = true;
 	fireRatePowerupCurrentTime = 0;
+	fireRateRenderer.SetFrame(0);
 }
 
 void PlayerShooting::StartMultiShotPowerup()
 {
 	multiShotPowerupStarted = true;
 	multiShotPowerupCurrentTime = 0;
+	multiShotRenderer.SetFrame(0);
 }
 
 void PlayerShooting::Reset()
