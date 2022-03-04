@@ -20,6 +20,7 @@ public:
 	void Update();
 	void StartFireRatePowerup();
 	void StartMultiShotPowerup();
+	void SnowballBurst();
 	void Reset();
 
 private:

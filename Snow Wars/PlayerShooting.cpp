@@ -74,6 +74,20 @@ void PlayerShooting::StartMultiShotPowerup()
 	multiShotRenderer.SetFrame(0);
 }
 
+void PlayerShooting::SnowballBurst()
+{
+	float angle = 0.0f;
+	for (int i = 0; i < 36; i++)
+	{
+		vec2 directionOffset = { 0,0 };
+		directionOffset.x = cos((m_aimAngle + angle) * piRadiant);
+		directionOffset.y = sin((m_aimAngle + angle) * piRadiant);
+		angle += 10.0f;
+		m_snowballController->SpawnSnowball(directionOffset, m_transform->GetPosition());
+
+	}
+}
+
 void PlayerShooting::Reset()
 {
 	fireRatePowerupStarted = false;

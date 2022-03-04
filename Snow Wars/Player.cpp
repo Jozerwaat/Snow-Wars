@@ -32,6 +32,7 @@ void Player::TakeDamage()
 	if (m_isInvincible)
 		return;
 
+	playerShooting.SnowballBurst();
 	m_health--;
 	m_isInvincible = true;
 	invincibilityTime = 0;
