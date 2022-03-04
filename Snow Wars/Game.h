@@ -16,6 +16,7 @@ public:
 	void Shutdown();
 	void ShowFPS();
 	void FullScreen();
+	void UnPause();
 	inline bool QuitGame() { return m_quitGame; }
 
 private:

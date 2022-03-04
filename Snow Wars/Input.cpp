@@ -1,5 +1,7 @@
 #include "Input.h"
 #include <iostream>
+#include "Timer.h"
+
 
 Input::Input()
 {
@@ -24,7 +26,14 @@ void Input::Update()
 	{
 		switch (event.type)
 		{
+		case SDL_KEYDOWN:
+			if (event.key.keysym.sym == SDLK_ESCAPE) 
+			{
+				Timer::Instance().Reset();
 
+				m_pause = !m_pause;
+			}
+			break;
 		case SDL_QUIT:
 			m_quit = true;
 			break;

@@ -63,7 +63,9 @@ void Game::Update()
 		return;
 	}
 
-	Timer::Instance().Tick();
+	if (input.PauseGame() == false)
+		Timer::Instance().Tick();
+
 	healthbar.SetFrame(player.GetHealth());
 	healthbar.Render(vec2(window.GetWidth() - 145, window.GetHeight() - 45));
 
@@ -71,6 +73,10 @@ void Game::Update()
 	snowballController.UpdateSnowballs();
 	player.Update();
 	enemySpawner.Update();
+
+	if (input.PauseGame())
+		menuController.ShowPauseScreen();
+	
 	mouse.Update();
 }
 
@@ -85,12 +91,12 @@ void Game::Reset()
 	player.Reset();
 	player.GetCollider()->GetTransform()->GetPosition() = vec2(window.GetWidth() / 2, window.GetHeight() / 2);
 	m_gameOver = false;
+	input.Instance().UnPause();
 }
 
 void Game::GameOver()
 {
 	healthbar.SetFrame(0);
-	menuController.Show();
 	enemySpawner.PoolAll();
 	snowballController.PoolAll();
 	powerupController.Reset();
@@ -115,4 +121,9 @@ void Game::FullScreen()
 	window.Resize();
 	backgroundRend.~Renderer();
 	new(&backgroundRend) Renderer("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
+}
+
+void Game::UnPause()
+{
+	input.Instance().UnPause();
 }

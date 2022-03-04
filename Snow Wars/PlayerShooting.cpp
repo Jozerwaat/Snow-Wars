@@ -24,6 +24,9 @@ static Renderer multiShotRenderer("assets/MultiShotPowerupCooldown.png", 8);
 
 void PlayerShooting::Update()
 {
+	if (input.PauseGame())
+		return;
+
 	Aim();
 
 	if (input.Instance().LeftMouseDown())

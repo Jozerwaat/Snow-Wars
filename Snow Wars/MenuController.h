@@ -13,7 +13,7 @@ public:
 	~MenuController() = default;
 
 	void Update();
-	void Show();
+	void ShowPauseScreen();
 
 private:
 	Window* m_window;

@@ -16,6 +16,8 @@ public:
 	const Uint8* KeyboardEvents();
 
 	inline bool QuitGame() const { return m_quit; }
+	inline bool PauseGame() const {return m_pause;}
+	inline void UnPause() {m_pause = false;}
 	inline bool LeftMouseDown() { return m_leftMouseDown; }
 	inline bool RightMouseDown() { return m_rightMouseDown; }
 	inline bool ResizeWindow() { return m_resize; }
@@ -28,6 +30,7 @@ private:
 	float m_mouseScaleY = 1;
 
 	bool m_quit = false;
+	bool m_pause = false;
 	bool m_resize = false;
 	bool m_leftMouseDown = false;
 	bool m_rightMouseDown = false;
