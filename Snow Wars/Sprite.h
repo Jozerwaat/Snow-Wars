@@ -6,6 +6,7 @@
 class Sprite
 {
 public:
+	Sprite() = default;
 	Sprite(const std::string& imagePath, vec2 size = NULL);
 	~Sprite();
 

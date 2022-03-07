@@ -29,9 +29,14 @@ public:
 
 	Transform* GetTransform() { return &m_transform; }
 
+	void ChangeSprite(std::string spritePath, int frameCount, vec2 size = NULL)
+	{
+		m_renderer.~Renderer();
+		m_renderer = Renderer(spritePath, frameCount, size);
+	}
 protected:
-	Transform m_transform;
 	Renderer m_renderer;
+	Transform m_transform;
 	CircleCollider m_collider;
 	bool m_instantiated = false;
 };

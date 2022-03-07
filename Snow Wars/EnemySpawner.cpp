@@ -7,12 +7,30 @@
 static const Timer& timer = Timer::Instance();
 static const ScoreController& scoreController = ScoreController::Instance();
 
-static char spritePath[] = "assets/IceBall.png";
-
+static Enemy iceBall;
+static Enemy snowflake;
 static ObjectPool<Enemy> pool;
+
 static const int speed = 500;
 static float spawnSpeed = 2.0f; //Enemies spawned per second
 static float spawnSpeedTimeIncrease = 30;
+
+void EnemySpawner::Init(Window& window, Player* player, SnowballController* snowballController)
+{
+	m_screen = &window;
+	m_player = player;
+	m_snowballController = snowballController;
+
+	iceBall = Enemy(vec2(0, 0), "assets/IceBall.png", 24);
+	iceBall.SetType(ENEMY_TYPE::ICE_BALL);
+	iceBall.SetRadius(25);
+	iceBall.SetRotationSpeed(500);
+
+	snowflake = Enemy(vec2(0, 0), "assets/Snowflake.png", 1);
+	snowflake.SetType(ENEMY_TYPE::SNOWFLAKE);
+	snowflake.SetRadius(25);
+	snowflake.SetRotationSpeed(80);
+}
 
 void EnemySpawner::Update()
 {
@@ -23,7 +41,6 @@ void EnemySpawner::Update()
 	}
 
 	m_currentTime += timer.ElapsedSeconds();
-	
 	if ((m_currentTime * spawnSpeed) > 1)
 	{
 		m_currentTime = 0;
@@ -33,25 +50,27 @@ void EnemySpawner::Update()
 	{
 		if (m_enemies[i]->OutsideBounds(m_screen->GetWidth(), m_screen->GetHeight()))
 		{
-			pool.Pool(m_enemies[i]);
+			pool.MapPool(m_enemies[i]);
+			//pool.Pool(m_enemies[i]);
 			m_enemies.erase(m_enemies.begin() + i);
 			i--;
 			continue;
 		}
 
-		CheckCollision(i);
+	CheckCollision(i);
 
 		if (m_enemies[i]->GetHealth() <= 0)
 		{
 			scoreController.Instance().AddScore(10);
-			pool.Pool(m_enemies[i]);
+			pool.MapPool(m_enemies[i]);
+			//pool.Pool(m_enemies[i]);
 			m_enemies.erase(m_enemies.begin() + i);
 			i--;
 			continue;
 		}
 
-
 		m_enemies[i]->Update();
+	//	test.Update();
 
 	}
 }
@@ -72,7 +91,8 @@ void EnemySpawner::CheckCollision(int index)
 		if (m_player->IsInvincible())
 			return;
 
-		pool.Pool(m_enemies[index]);
+		pool.MapPool(m_enemies[index]);
+		//pool.Pool(m_enemies[index]);
 		m_enemies.erase(m_enemies.begin() + index);
 
 		m_player->TakeDamage();
@@ -83,7 +103,8 @@ void EnemySpawner::PoolAll()
 {
 	for (int i = m_enemies.size() - 1; i >= 0; i--)
 	{
-		pool.Pool(m_enemies[i]);
+		pool.MapPool(m_enemies[i]);
+		//pool.Pool(m_enemies[i]);
 		m_enemies.pop_back();
 	}
 	m_currentTime = 0;
@@ -93,16 +114,23 @@ void EnemySpawner::PoolAll()
 
 void EnemySpawner::Spawn(vec2 direction, vec2 position)
 {
-	Enemy* enemy = pool.Get();
-	m_enemies.push_back(enemy);
+	Enemy* enemy = nullptr;
 
-	if (enemy->IsInstantiated() == false)
-		*enemy = Enemy(position, spritePath, 24);
+	int randomEnemy = rand() % 2;
 
-	enemy->SetRadius(25);
+	if (randomEnemy == 0) 
+	{
+		enemy = pool.GetEnemy(iceBall);
+	}
+	else if (randomEnemy == 1) 
+	{
+		enemy = pool.GetEnemy(snowflake);
+
+	}
 	int enemySpeed = speed + (-140 + (rand() % 260));
-	enemy->Init(position, direction, enemySpeed);
-	enemy->SetHealth(3);	
+	enemy->Init(position, direction, enemySpeed,3);
+
+	m_enemies.push_back(enemy);
 }
 
 void EnemySpawner::CalculateSpawnPosition()

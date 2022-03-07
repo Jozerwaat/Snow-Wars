@@ -23,8 +23,6 @@ void Renderer::Render(const vec2& position)
 
 void Renderer::Render(const vec2& position, const float angle)
 {
-
-
 	float frameWidth = m_sprite->GetSize().x / m_frameCount;
 
 	SDL_Rect image;

@@ -52,7 +52,6 @@ void FullScreen()
 
 	overlayRenderer.~Renderer();
 	new(&overlayRenderer) Renderer("Assets/Overlay.png", 1, vec2(wind->GetWidth(), wind->GetHeight()));
-
 }
 MenuController::MenuController(Window* window, Game* gam)
 {
@@ -64,7 +63,6 @@ MenuController::MenuController(Window* window, Game* gam)
 	fullScreenButton = Button(vec2(window->GetWidth() - 100, 100), "assets/FullscreenButton.png", 2);
 	resumeButton = Button(vec2(window->GetWidth() / 2, (window->GetHeight() / 2) - 60), "assets/ResumeButton.png", 2);
 	menuButton = Button(vec2(window->GetWidth() / 2, (window->GetHeight() / 2) + 60), "assets/MenuButton.png", 2);
-
 	
 	startButton.function = StartGame;
 	resumeButton.function = ResumeGame;

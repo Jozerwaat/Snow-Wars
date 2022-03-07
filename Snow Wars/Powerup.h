@@ -1,8 +1,6 @@
 #pragma once
 #include "Entity.h"
 
-enum class POWERUP_TYPE;
-
 enum class POWERUP_TYPE
 {
 	FIRE_RATE = 0,

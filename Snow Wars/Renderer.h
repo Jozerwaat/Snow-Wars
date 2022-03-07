@@ -5,12 +5,10 @@
 #include "Vec.h"
 #include "Sprite.h"
 #include "Window.h"
-
 class Renderer
 {
 public:
 	Renderer() = default;
-
 	Renderer(const std::string& imagePath, int frameCount, vec2 size = NULL)
 	{
 		m_sprite = new Sprite(imagePath, size);

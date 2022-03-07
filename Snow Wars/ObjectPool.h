@@ -2,6 +2,9 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <map>
+#include <any>
+#include "Enemy.h"
 
 template <typename T>
 class ObjectPool
@@ -21,6 +24,26 @@ public:
 
 		return obj;
 	}
+
+	void MapPool(Enemy* enemy)
+	{
+		m_enemyObjects[*enemy].emplace_back(enemy);
+		std::cout << m_enemyObjects[*enemy].size() << std::endl;
+	}
+
+	Enemy* GetEnemy(Enemy enemy) 
+	{
+		if (m_enemyObjects[enemy].empty()) 
+		{
+			return new Enemy(enemy);
+		} // no objects are free
+
+		auto obj = m_enemyObjects[enemy].back();	// get the last object in the list
+		m_enemyObjects[enemy].pop_back();
+		std::cout << m_enemyObjects[enemy].size() << std::endl;
+		return obj;
+	}
 private:
 	std::vector<T*> m_objects;
+	std::map<Enemy, std::vector<Enemy*>> m_enemyObjects = {};
 };

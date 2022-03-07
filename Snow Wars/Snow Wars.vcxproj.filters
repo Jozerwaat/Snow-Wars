@@ -120,6 +120,9 @@
     <ClCompile Include="PowerupController.cpp">
       <Filter>Source Files\Powerups</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec.h">

@@ -5,8 +5,9 @@ const static Timer& timer = Timer::Instance();
 
 void Enemy::Update()
 {
-	m_renderer.Animate(30);
-	m_renderer.Render(m_transform.GetPosition());
+	m_rotationAngle += (m_rotationSpeed * timer.ElapsedSeconds());
+	//m_renderer.Animate(30);
+	m_renderer.Render(m_transform.GetPosition(), m_rotationAngle);
 	m_transform.Translate((m_direction * m_speed) * timer.ElapsedSeconds());
 }
 
