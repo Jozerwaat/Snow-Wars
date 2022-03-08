@@ -9,7 +9,7 @@ public:
 	Game(Window* window) { m_window = window; }
 	~Game() = default;
 
-	void Init();
+	void InitSpawnedEnemy();
 	void Update();
 	void Reset();
 	void GameOver();

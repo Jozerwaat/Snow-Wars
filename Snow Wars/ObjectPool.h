@@ -28,7 +28,6 @@ public:
 	void MapPool(Enemy* enemy)
 	{
 		m_enemyObjects[*enemy].emplace_back(enemy);
-		std::cout << m_enemyObjects[*enemy].size() << std::endl;
 	}
 
 	Enemy* GetEnemy(Enemy enemy) 
@@ -40,7 +39,6 @@ public:
 
 		auto obj = m_enemyObjects[enemy].back();	// get the last object in the list
 		m_enemyObjects[enemy].pop_back();
-		std::cout << m_enemyObjects[enemy].size() << std::endl;
 		return obj;
 	}
 private:

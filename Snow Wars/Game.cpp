@@ -29,15 +29,15 @@ Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
 Renderer healthbar("Assets/Healthbar.png", 4);
 Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
 
-void Game::Init()
+void Game::InitSpawnedEnemy()
 {
 	srand(std::time(0));
 	menuController.~MenuController();
 	menuController = MenuController(&window, this);
-	player.Init(snowballController);
+	player.InitSpawnedEnemy(snowballController);
 	player.SetHealth(3);
 	healthbar.SetFrame(player.GetHealth());
-	enemySpawner.Init(window, &player, &snowballController);
+	enemySpawner.InitSpawnedEnemy(window, &player, &snowballController);
 }
 
 void Game::Update()
@@ -78,6 +78,7 @@ void Game::Update()
 		menuController.ShowPauseScreen();
 	
 	mouse.Update();
+	//ShowFPS();
 }
 
 void Game::Reset()

@@ -31,7 +31,7 @@ void SnowballController::SpawnSnowball(vec2 direction, vec2 position)
 
 	snowball->SetRadius(22);
 
-	snowball->Init(position, direction, speed);
+	snowball->InitSpawnedEnemy(position, direction, speed);
 }
 
 void SnowballController::PoolSnowball(int i)

@@ -18,7 +18,7 @@ public:
 
 	void Update() override;
 
-	void Init(SnowballController& snowballController);
+	void InitSpawnedEnemy(SnowballController& snowballController);
 
 	inline void SetHealth(int health) { m_health = health; }
 	inline int& GetHealth() { return m_health; }

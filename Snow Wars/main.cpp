@@ -5,7 +5,7 @@ int main(int argc, char** argv)
 {
 	Game game;
 
-	game.Init();
+	game.InitSpawnedEnemy();
 
 	while (game.QuitGame() == false) 
 		game.Update();

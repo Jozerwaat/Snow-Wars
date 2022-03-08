@@ -10,7 +10,7 @@ class EnemySpawner
 public:
 	EnemySpawner() = default;
 
-	void Init(Window& window, Player* player, SnowballController* snowballController);
+	void InitSpawnedEnemy(Window& window, Player* player, SnowballController* snowballController);
 
 	void Update();
 	void Spawn(vec2 direction, vec2 snowmanPos);

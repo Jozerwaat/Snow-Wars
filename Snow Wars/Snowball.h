@@ -9,7 +9,7 @@ public:
 	Snowball(vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size) {}
 	~Snowball() {}
 
-	void Init(vec2 position, vec2 direction, int speed)
+	void InitSpawnedEnemy(vec2 position, vec2 direction, int speed)
 	{
 		m_transform.GetPosition() = position;
 		m_direction = direction;
