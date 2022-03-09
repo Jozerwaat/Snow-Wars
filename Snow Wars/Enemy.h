@@ -20,8 +20,9 @@ public:
 	Enemy(vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size) {}
 	~Enemy() {}
 
-	void InitSpawnedEnemy(vec2 position, vec2 direction, int speed, int health)
+	void Init(vec2 position, vec2 direction, int speed, int health, bool destroy = false)
 	{
+		m_destroy = destroy;
 		m_transform.GetPosition() = position;
 		m_direction = direction;
 		m_speed = speed;
@@ -36,6 +37,7 @@ public:
 		m_rotationSpeed = rotationSpeed;
 	}
 
+	bool DestroyEnemy() { return m_destroy; }
 	virtual void Update() override;
 	bool OutsideBounds(int screenWidth, int screenHeight);
 	inline void SetHealth(int health) { m_health = health; }
@@ -52,6 +54,7 @@ public:
 	}
 
 private:
+	bool m_destroy = false;
 	ENEMY_TYPE m_type = ENEMY_TYPE::ICE_BALL;
 	vec2 m_direction = { 0,0 };
 	int m_speed = 1;
@@ -60,5 +63,6 @@ private:
 	int m_health = 3;
 	int m_colliderRadius = 10;
 	float m_rotationAngle = 0;
+	float m_rotationTime = 0;
 };
 

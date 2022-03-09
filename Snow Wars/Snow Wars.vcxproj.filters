@@ -123,6 +123,12 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProjectileController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vec.h">
@@ -202,6 +208,12 @@
     </ClInclude>
     <ClInclude Include="Powerup.h">
       <Filter>Header Files\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -161,6 +161,8 @@
     <ClCompile Include="PlayerMovement.cpp" />
     <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="PowerupController.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ProjectileController.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ScoreController.cpp" />
     <ClCompile Include="Snowball.cpp" />
@@ -186,6 +188,8 @@
     <ClInclude Include="PlayerMovement.h" />
     <ClInclude Include="Powerup.h" />
     <ClInclude Include="PowerupController.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="ProjectileController.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ScoreController.h" />

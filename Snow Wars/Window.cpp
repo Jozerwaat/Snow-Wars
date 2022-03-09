@@ -8,7 +8,7 @@ SDL_Renderer* Window::m_renderer = nullptr;
 Window::Window(std::string title, int width, int height) :
 	m_title(title), m_width(width), m_height(height)
 {
-	m_closed = !InitSpawnedEnemy();
+	m_closed = !Init();
 	std::cout << "Window Initialized!" << std::endl;
 }
 
@@ -23,7 +23,7 @@ Window::~Window()
 }
 
 
-bool Window::InitSpawnedEnemy()
+bool Window::Init()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != NULL)
 	{

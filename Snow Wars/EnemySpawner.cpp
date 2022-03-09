@@ -14,7 +14,7 @@ static ObjectPool<Enemy> pool;
 static float spawnSpeed = 2.0f; //Enemies spawned per second
 static float spawnSpeedTimeIncrease = 30;
 
-void EnemySpawner::InitSpawnedEnemy(Window& window, Player* player, SnowballController* snowballController)
+void EnemySpawner::Init(Window& window, Player* player, SnowballController* snowballController)
 {
 	m_screen = &window;
 	m_player = player;
@@ -24,7 +24,7 @@ void EnemySpawner::InitSpawnedEnemy(Window& window, Player* player, SnowballCont
 	iceBall.SetPrefab(ENEMY_TYPE::ICE_BALL, 25, 500, 500);
 
 	snowflake = Enemy(vec2(0, 0), "assets/Snowflake.png", 1);
-	snowflake.SetPrefab(ENEMY_TYPE::SNOWFLAKE, 30, 80, 90);
+	snowflake.SetPrefab(ENEMY_TYPE::SNOWFLAKE, 35, 80, 90);
 }
 
 void EnemySpawner::Update()
@@ -43,6 +43,13 @@ void EnemySpawner::Update()
 	}
 	for (int i = 0; i < m_enemies.size(); i++)
 	{
+		if (m_enemies[i]->DestroyEnemy()) 
+		{
+			pool.MapPool(m_enemies[i]);
+			m_enemies.erase(m_enemies.begin() + i);
+			i--;
+			continue;
+		}
 		if (m_enemies[i]->OutsideBounds(m_screen->GetWidth(), m_screen->GetHeight()))
 		{
 			pool.MapPool(m_enemies[i]);
@@ -114,7 +121,7 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 		enemy = pool.GetEnemy(snowflake);
 	
 	int enemySpeed = enemy->GetBaseSpeed() + (-(enemy->GetBaseSpeed() * 0.3f) + (rand() % enemy->GetBaseSpeed() * 0.3f));
-	enemy->InitSpawnedEnemy(position, direction, enemySpeed,3);
+	enemy->Init(position, direction, enemySpeed,3, false);
 
 	m_enemies.push_back(enemy);
 }

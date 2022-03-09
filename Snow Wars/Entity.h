@@ -19,7 +19,7 @@ public:
 	}
 	~Entity() {}
 	
-	virtual void InitSpawnedEnemy() {}
+	virtual void Init() {}
 	virtual void Update() {}
 	virtual void SetRadius(int radius) { m_collider = CircleCollider(radius, &m_transform); }
 

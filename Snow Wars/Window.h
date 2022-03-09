@@ -27,7 +27,7 @@ public:
 protected:
 
 private:
-	bool InitSpawnedEnemy();
+	bool Init();
 
 	std::string m_title = "Snow Wars";
 	int m_width = 800;

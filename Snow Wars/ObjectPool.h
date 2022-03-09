@@ -25,6 +25,17 @@ public:
 		return obj;
 	}
 
+	T* Get(T object) {
+		if (m_objects.empty()) // no objects are free
+			return new T(object);
+
+		auto obj = m_objects.back();	// get the last object in the list
+		m_objects.pop_back();
+
+		return obj;
+	}
+
+
 	void MapPool(Enemy* enemy)
 	{
 		m_enemyObjects[*enemy].emplace_back(enemy);

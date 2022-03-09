@@ -8,6 +8,7 @@
 #include "SnowballController.h"
 #include "ScoreController.h"
 #include "PowerupController.h"
+#include "ProjectileController.h"
 #include "Player.h"
 #include "Mouse.h"
 #include "EnemySpawner.h"
@@ -23,21 +24,23 @@ MenuController menuController;
 SnowballController snowballController(window);
 PowerupController powerupController(&window, &player);
 EnemySpawner enemySpawner;
+ProjectileController projectileController;
 
 Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
 
 Renderer healthbar("Assets/Healthbar.png", 4);
 Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
 
-void Game::InitSpawnedEnemy()
+void Game::Init()
 {
+	projectileController.Instance().Init(window, player);
 	srand(std::time(0));
 	menuController.~MenuController();
 	menuController = MenuController(&window, this);
-	player.InitSpawnedEnemy(snowballController);
+	player.Init(snowballController);
 	player.SetHealth(3);
 	healthbar.SetFrame(player.GetHealth());
-	enemySpawner.InitSpawnedEnemy(window, &player, &snowballController);
+	enemySpawner.Init(window, &player, &snowballController);
 }
 
 void Game::Update()
@@ -73,6 +76,7 @@ void Game::Update()
 	snowballController.UpdateSnowballs();
 	player.Update();
 	enemySpawner.Update();
+	projectileController.Instance().Update();
 
 	if (input.PauseGame())
 		menuController.ShowPauseScreen();
@@ -100,6 +104,7 @@ void Game::GameOver()
 	healthbar.SetFrame(0);
 	enemySpawner.PoolAll();
 	snowballController.PoolAll();
+	projectileController.PoolAll();
 	powerupController.Reset();
 	m_gameOver = true;
 }
@@ -126,5 +131,7 @@ void Game::FullScreen()
 
 void Game::UnPause()
 {
+	Timer::Instance().Reset();
+
 	input.Instance().UnPause();
 }

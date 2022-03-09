@@ -18,7 +18,7 @@ static float invincibilityTime = 0;
 static float visibilityTime = 0.2f;
 static bool spritevisible = false;
 
-void Player::InitSpawnedEnemy(SnowballController& controller)
+void Player::Init(SnowballController& controller)
 {
 	playerMovement.~PlayerMovement();
 	playerShooting.~PlayerShooting();
