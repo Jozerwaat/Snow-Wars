@@ -13,11 +13,11 @@ void ProjectileController::Init(Window& window, Player& player)
 {
 	m_player = &player;
 	m_window = &window;
-	snowflake = Projectile(vec2(0, 0), "assets/SnowFlakeProjectile.png", 1);
-	snowflake.SetPrefab(600, 8);
+	snowflake = Projectile( vec2(0, 0), "assets/SnowFlakeProjectile.png", 1);
+	snowflake.SetPrefab(PROJECTILE_TYPE::SNOWFLAKE, 600, 8);
 
 	icicle = Projectile(vec2(0, 0), "assets/EnemySnowmanProjectile.png", 1);
-	icicle.SetPrefab(500, 5);
+	icicle.SetPrefab(PROJECTILE_TYPE::ICICLE, 500, 5);
 }
 
 ProjectileController& ProjectileController::Instance()
@@ -34,7 +34,7 @@ void ProjectileController::Update()
 
 		if (m_projectiles[i]->OutsideBounds(m_window->GetWidth(), m_window->GetHeight()))
 		{
-			objectPool.Pool(m_projectiles[i]);
+			objectPool.PoolProjectile(m_projectiles[i]);
 			m_projectiles.erase(m_projectiles.begin() + i);
 			i--;
 			continue;
@@ -44,7 +44,7 @@ void ProjectileController::Update()
 			if (m_player->IsInvincible())
 				return;
 
-			objectPool.Pool(m_projectiles[i]);
+			objectPool.PoolProjectile(m_projectiles[i]);
 			m_projectiles.erase(m_projectiles.begin() + i);
 
 			m_player->TakeDamage();
@@ -56,9 +56,9 @@ void ProjectileController::SpawnProjectile(int projectileID, vec2 direction, vec
 {
 	Projectile* projectile = nullptr;
 	if(projectileID == 0)
-		projectile = objectPool.Get(snowflake);
+		projectile = objectPool.GetProjectile(snowflake);
 	if (projectileID == 1)
-		projectile = objectPool.Get(icicle);
+		projectile = objectPool.GetProjectile(icicle);
 
 	projectile->Init(position, direction, projectile->GetSpeed(), rotationAngle);
 	m_projectiles.push_back(projectile);
@@ -66,7 +66,7 @@ void ProjectileController::SpawnProjectile(int projectileID, vec2 direction, vec
 
 void ProjectileController::PoolProjectile(int i)
 {
-	objectPool.Pool(m_projectiles[i]);
+	objectPool.PoolProjectile(m_projectiles[i]);
 	m_projectiles.erase(m_projectiles.begin() + i);
 }
 
@@ -74,7 +74,7 @@ void ProjectileController::PoolAll()
 {
 	for (int i = m_projectiles.size() - 1; i >= 0; i--)
 	{
-		objectPool.Pool(m_projectiles[i]);
+		objectPool.PoolProjectile(m_projectiles[i]);
 		m_projectiles.pop_back();
 	}
 }

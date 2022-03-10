@@ -2,6 +2,12 @@
 #include "Entity.h"
 #include "Vec.h"
 
+enum class PROJECTILE_TYPE
+{
+	SNOWFLAKE = 0,
+	ICICLE = 1
+};
+
 class Projectile : public Entity
 {
 public:
@@ -14,8 +20,9 @@ public:
 	Projectile(vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size) {}
 	~Projectile() {}
 
-	void SetPrefab(int speed, int colliderRaidus) 
+	void SetPrefab(PROJECTILE_TYPE type, int speed, int colliderRaidus) 
 	{
+		m_type = type;
 		m_speed = speed;
 		m_colliderRadius = colliderRaidus;
 	}
@@ -34,7 +41,13 @@ public:
 
 	virtual void Update() override;
 
+	bool operator<(const Projectile& other) const {
+		return m_type < other.m_type;
+	}
+
+
 private:
+	PROJECTILE_TYPE m_type = PROJECTILE_TYPE::SNOWFLAKE;
 	vec2 m_direction = { 0,0 };
 
 	float m_rotationAngle = 0;

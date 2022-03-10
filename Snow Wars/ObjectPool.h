@@ -5,6 +5,7 @@
 #include <map>
 #include <any>
 #include "Enemy.h"
+#include "Projectile.h"
 
 template <typename T>
 class ObjectPool
@@ -52,7 +53,27 @@ public:
 		m_enemyObjects[enemy].pop_back();
 		return obj;
 	}
+
+	void PoolProjectile(Projectile* projectile)
+	{
+		m_projectiles[*projectile].emplace_back(projectile);
+	}
+
+	Projectile* GetProjectile(Projectile projectile)
+	{
+		if (m_projectiles[projectile].empty())
+		{
+			return new Projectile(projectile);
+		} // no objects are free
+
+		auto obj = m_projectiles[projectile].back();	// get the last object in the list
+		m_projectiles[projectile].pop_back();
+		return obj;
+	}
+
+
 private:
 	std::vector<T*> m_objects;
 	std::map<Enemy, std::vector<Enemy*>> m_enemyObjects = {};
+	std::map<Projectile, std::vector<Projectile*>> m_projectiles = {};
 };
