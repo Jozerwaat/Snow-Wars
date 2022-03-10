@@ -16,7 +16,7 @@ void Enemy::Update()
 	if (m_type == ENEMY_TYPE::SNOWFLAKE) 
 	{
 		m_rotationTime += timer.ElapsedSeconds();
-		timeToExplode = 9 + (-2.0f + (float(rand())) / float((RAND_MAX)) * 4.0f);
+		timeToExplode = 13 + (-4.0f + (float(rand())) / float((RAND_MAX)) * 7.0f);
 		//float randDirY = (-1.0f + (float(rand())) / float((RAND_MAX)) * 2.0f);
 		if (m_rotationTime >= timeToExplode)
 		{
@@ -27,7 +27,7 @@ void Enemy::Update()
 				vec2 directionOffset = { 0,0 };
 				directionOffset.x = cos((m_rotationAngle + angle) * piRadiant);
 				directionOffset.y = sin((m_rotationAngle + angle) * piRadiant);
-				ProjectileController::Instance().SpawnProjectile(directionOffset, m_transform.GetPosition(), (m_rotationAngle + angle) + 90); //Add plus 90 to the angle to accomodate for the rotation offset
+				ProjectileController::Instance().SpawnProjectile(0, directionOffset, m_transform.GetPosition(), (m_rotationAngle + angle) + 90); //Add plus 90 to the angle to accomodate for the rotation offset
 				angle += 60.0f;
 			}
 			m_destroy = true;
@@ -45,7 +45,7 @@ void Enemy::Update()
 		if (m_attackTime >= m_attackRate)
 		{
 			m_attackTime = 0;
-			ProjectileController::Instance().SpawnProjectile(lookDirection, m_transform.GetPosition(), m_rotationAngle); //Add plus 90 to the angle to accomodate for the rotation offset
+			ProjectileController::Instance().SpawnProjectile(1,lookDirection, m_transform.GetPosition(), m_rotationAngle); //Add plus 90 to the angle to accomodate for the rotation offset
 		}
 	}
 }

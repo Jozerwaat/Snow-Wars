@@ -117,7 +117,15 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 {
 	Enemy* enemy = nullptr;
 
-	int randomEnemy = rand() % 3;
+	int randomEnemy = 0;
+	int enemyChance = rand() % 100;
+	
+	if (enemyChance >= 0 && enemyChance < 60)
+		randomEnemy = 0;
+	else if (enemyChance >= 60 && enemyChance < 85)
+		randomEnemy = 1;
+	else if (enemyChance >= 85)
+		randomEnemy = 2;
 
 	if (randomEnemy == 0) 
 		enemy = pool.GetEnemy(iceBall);

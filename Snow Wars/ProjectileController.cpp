@@ -4,7 +4,8 @@
 const ProjectileController& projectileController = ProjectileController::Instance();
 
 static Projectile snowflake;
-static int health = 0;
+static Projectile icicle;
+
 static ObjectPool<Projectile> objectPool;
 
 
@@ -13,8 +14,10 @@ void ProjectileController::Init(Window& window, Player& player)
 	m_player = &player;
 	m_window = &window;
 	snowflake = Projectile(vec2(0, 0), "assets/SnowFlakeProjectile.png", 1);
-	snowflake.SetSpeed(600);
-	health = 3;
+	snowflake.SetPrefab(600, 8);
+
+	icicle = Projectile(vec2(0, 0), "assets/EnemySnowmanProjectile.png", 1);
+	icicle.SetPrefab(500, 5);
 }
 
 ProjectileController& ProjectileController::Instance()
@@ -49,12 +52,13 @@ void ProjectileController::Update()
 	}
 }
 
-void ProjectileController::SpawnProjectile(vec2 direction, vec2 position, float rotationAngle)
+void ProjectileController::SpawnProjectile(int projectileID, vec2 direction, vec2 position, float rotationAngle)
 {
-	Projectile* projectile = objectPool.Get(snowflake);
-
-
-	projectile->SetRadius(8);
+	Projectile* projectile = nullptr;
+	if(projectileID == 0)
+		projectile = objectPool.Get(snowflake);
+	if (projectileID == 1)
+		projectile = objectPool.Get(icicle);
 
 	projectile->Init(position, direction, projectile->GetSpeed(), rotationAngle);
 	m_projectiles.push_back(projectile);

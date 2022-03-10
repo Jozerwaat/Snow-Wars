@@ -14,7 +14,7 @@ public:
 	static  ProjectileController& Instance();
 
 	void Update();
-	void SpawnProjectile(vec2 direction, vec2 snowmanPos, float rotationAngle = 0);
+	void SpawnProjectile(int projectileID, vec2 direction, vec2 snowmanPos, float rotationAngle = 0);
 
 	std::vector<Projectile*> GetProjectiles() { return m_projectiles; }
 

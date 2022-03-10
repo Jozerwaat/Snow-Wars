@@ -9,11 +9,16 @@ public:
 	Projectile(const Projectile& copy) : Entity(copy)
 	{
 		*this = copy;
-		//m_collider = CircleCollider(m_colliderRadius, &m_transform);
+		m_collider = CircleCollider(m_colliderRadius, &m_transform);
 	}
 	Projectile(vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size) {}
 	~Projectile() {}
 
+	void SetPrefab(int speed, int colliderRaidus) 
+	{
+		m_speed = speed;
+		m_colliderRadius = colliderRaidus;
+	}
 
 	void Init(vec2 position, vec2 direction, int speed, float rotationAngle = 0)
 	{
@@ -33,6 +38,7 @@ private:
 	vec2 m_direction = { 0,0 };
 
 	float m_rotationAngle = 0;
+	float m_colliderRadius = 5;
 	int m_speed = 1;
 };
 
