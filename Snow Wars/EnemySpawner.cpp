@@ -27,7 +27,7 @@ void EnemySpawner::Init(Window& window, Player* player, SnowballController* snow
 	snowflake = Enemy(vec2(0, 0), "assets/Snowflake.png", 1);
 	snowflake.SetPrefab(ENEMY_TYPE::SNOWFLAKE, 35, 80, 90, m_player);
 
-	snowman = Enemy(vec2(0, 0), "assets/EnemySnowman.png", 1);
+	snowman = Enemy(vec2(0, 0), "assets/EnemySnowman.png", 12);
 	snowman.SetPrefab(ENEMY_TYPE::SNOWMAN, 25, 60, 0, m_player);
 }
 

@@ -12,6 +12,8 @@ void Enemy::Update()
 	m_renderer.Render(m_transform.GetPosition(), m_rotationAngle);
 	m_transform.Translate((m_direction * m_speed) * timer.ElapsedSeconds());
 
+	if (m_type == ENEMY_TYPE::SNOWMAN)
+		m_renderer.Animate(30, true, false);
 	
 	if (m_type == ENEMY_TYPE::SNOWFLAKE) 
 	{
