@@ -1,10 +1,12 @@
 #pragma once
 #include "Entity.h"
+#include "Player.h"
 
 enum class ENEMY_TYPE
 {
 	ICE_BALL = 0,
-	SNOWFLAKE = 1
+	SNOWFLAKE = 1,
+	SNOWMAN = 2
 };
 
 
@@ -29,12 +31,13 @@ public:
 		m_health = health;
 	}
 
-	void SetPrefab(ENEMY_TYPE type, int colliderRadius, int baseSpeed, float rotationSpeed) 
+	void SetPrefab(ENEMY_TYPE type, int colliderRadius, int baseSpeed, float rotationSpeed, Player* player) 
 	{
 		m_type = type;
 		m_colliderRadius = colliderRadius;
 		m_baseSpeed = baseSpeed;
 		m_rotationSpeed = rotationSpeed;
+		m_player = player;
 	}
 
 	bool DestroyEnemy() { return m_destroy; }
@@ -54,6 +57,7 @@ public:
 	}
 
 private:
+	Player* m_player = nullptr;
 	bool m_destroy = false;
 	ENEMY_TYPE m_type = ENEMY_TYPE::ICE_BALL;
 	vec2 m_direction = { 0,0 };
@@ -64,5 +68,8 @@ private:
 	int m_colliderRadius = 10;
 	float m_rotationAngle = 0;
 	float m_rotationTime = 0;
+
+	float m_attackTime = 0;
+	float m_attackRate = 3;
 };
 

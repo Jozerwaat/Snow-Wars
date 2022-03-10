@@ -9,6 +9,7 @@ static const ScoreController& scoreController = ScoreController::Instance();
 
 static Enemy iceBall;
 static Enemy snowflake;
+static Enemy snowman;
 static ObjectPool<Enemy> pool;
 
 static float spawnSpeed = 2.0f; //Enemies spawned per second
@@ -21,10 +22,13 @@ void EnemySpawner::Init(Window& window, Player* player, SnowballController* snow
 	m_snowballController = snowballController;
 
 	iceBall = Enemy(vec2(0, 0), "assets/IceBall.png", 1);
-	iceBall.SetPrefab(ENEMY_TYPE::ICE_BALL, 25, 500, 500);
+	iceBall.SetPrefab(ENEMY_TYPE::ICE_BALL, 25, 500, 500, m_player);
 
 	snowflake = Enemy(vec2(0, 0), "assets/Snowflake.png", 1);
-	snowflake.SetPrefab(ENEMY_TYPE::SNOWFLAKE, 35, 80, 90);
+	snowflake.SetPrefab(ENEMY_TYPE::SNOWFLAKE, 35, 80, 90, m_player);
+
+	snowman = Enemy(vec2(0, 0), "assets/EnemySnowman.png", 1);
+	snowman.SetPrefab(ENEMY_TYPE::SNOWMAN, 25, 80, 0, m_player);
 }
 
 void EnemySpawner::Update()
@@ -113,13 +117,15 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 {
 	Enemy* enemy = nullptr;
 
-	int randomEnemy = rand() % 2;
+	int randomEnemy = rand() % 3;
 
 	if (randomEnemy == 0) 
 		enemy = pool.GetEnemy(iceBall);
 	else if (randomEnemy == 1) 
 		enemy = pool.GetEnemy(snowflake);
-	
+	else if (randomEnemy == 2)
+		enemy = pool.GetEnemy(snowman);
+
 	int enemySpeed = enemy->GetBaseSpeed() + (-(enemy->GetBaseSpeed() * 0.3f) + (rand() % enemy->GetBaseSpeed() * 0.3f));
 	enemy->Init(position, direction, enemySpeed,3, false);
 

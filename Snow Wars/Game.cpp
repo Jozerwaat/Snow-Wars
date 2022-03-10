@@ -104,7 +104,7 @@ void Game::GameOver()
 	healthbar.SetFrame(0);
 	enemySpawner.PoolAll();
 	snowballController.PoolAll();
-	projectileController.PoolAll();
+	projectileController.Instance().PoolAll();
 	powerupController.Reset();
 	m_gameOver = true;
 }

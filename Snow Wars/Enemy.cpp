@@ -16,7 +16,7 @@ void Enemy::Update()
 	if (m_type == ENEMY_TYPE::SNOWFLAKE) 
 	{
 		m_rotationTime += timer.ElapsedSeconds();
-		timeToExplode = 7 + (-2.0f + (float(rand())) / float((RAND_MAX)) * 4.0f);
+		timeToExplode = 9 + (-2.0f + (float(rand())) / float((RAND_MAX)) * 4.0f);
 		//float randDirY = (-1.0f + (float(rand())) / float((RAND_MAX)) * 2.0f);
 		if (m_rotationTime >= timeToExplode)
 		{
@@ -35,6 +35,19 @@ void Enemy::Update()
 		}
 	}
 	
+	if (m_type == ENEMY_TYPE::SNOWMAN) 
+	{
+		vec2 lookDirection = { 0,0 };
+		lookDirection = (m_player->GetTransform()->GetPosition() - m_transform.GetPosition()).normalized();
+		m_rotationAngle = ((((atan2(-lookDirection.y, -lookDirection.x)) * 180) / pi) + 180) + 90; //Add plus 90 to the angle to accomodate for the rotation offset
+
+		m_attackTime += timer.ElapsedSeconds();
+		if (m_attackTime >= m_attackRate)
+		{
+			m_attackTime = 0;
+			ProjectileController::Instance().SpawnProjectile(lookDirection, m_transform.GetPosition(), m_rotationAngle); //Add plus 90 to the angle to accomodate for the rotation offset
+		}
+	}
 }
 
 bool Enemy::OutsideBounds(int screenWidth, int screenHeight)
