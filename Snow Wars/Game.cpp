@@ -18,7 +18,7 @@ static Window window("Snow Wars", 1920, 1080);
 static const Input& input = Input::Instance();
 const static ScoreController& scoreController = ScoreController::Instance();
 
-Player player(&window, vec2(window.GetWidth() / 2, window.GetHeight() / 2), "Assets/Snowman.png", 14);
+Player player(&window, vec2((float)window.GetWidth() / 2.0f, (float)window.GetHeight() / 2.0f), "Assets/Snowman.png", 14);
 
 MenuController menuController;
 SnowballController snowballController(window);
@@ -29,12 +29,12 @@ ProjectileController projectileController;
 Mouse mouse(vec2(0, 0), "Assets/Cursor.png", 1);
 
 Renderer healthbar("Assets/Healthbar.png", 4);
-Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
+Renderer backgroundRend("Assets/BackgroundHD.png", 1, vec2((float)window.GetWidth(), (float)window.GetHeight()));
 
 void Game::Init()
 {
 	projectileController.Instance().Init(window, player);
-	srand(std::time(0));
+	srand((unsigned int)std::time(0));
 	menuController.~MenuController();
 	menuController = MenuController(&window, this);
 	player.Init(snowballController);
@@ -46,9 +46,9 @@ void Game::Init()
 void Game::Update()
 {
 	window.Render();
-	backgroundRend.Render(vec2(window.GetWidth() / 2, window.GetHeight() / 2));
+	backgroundRend.Render(vec2((float)window.GetWidth() / 2.0f, (float)window.GetHeight() / 2.0f));
 	input.Instance().Update();
-	scoreController.Instance().DisplayScore(vec2(10, 10));
+	scoreController.Instance().DisplayScore(vec2(10.0f, 10.0f));
 
 	if (input.Instance().QuitGame())
 		m_quitGame = true;
@@ -70,7 +70,7 @@ void Game::Update()
 		Timer::Instance().Tick();
 
 	healthbar.SetFrame(player.GetHealth());
-	healthbar.Render(vec2(window.GetWidth() - 145, window.GetHeight() - 45));
+	healthbar.Render(vec2((float)window.GetWidth() - 145.0f, (float)window.GetHeight() - 45.0f));
 
 	powerupController.Update();
 	snowballController.UpdateSnowballs();
@@ -94,7 +94,7 @@ void Game::Reset()
 	scoreController.Instance().Reset();
 
 	player.Reset();
-	player.GetCollider()->GetTransform()->GetPosition() = vec2(window.GetWidth() / 2, window.GetHeight() / 2);
+	player.GetCollider()->GetTransform()->GetPosition() = vec2((float)window.GetWidth() / 2.0f, (float)window.GetHeight() / 2.0f);
 	m_gameOver = false;
 	input.Instance().UnPause();
 }
@@ -126,7 +126,7 @@ void Game::FullScreen()
 {
 	window.Resize();
 	backgroundRend.~Renderer();
-	new(&backgroundRend) Renderer("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
+	new(&backgroundRend) Renderer("Assets/BackgroundHD.png", 1, vec2((float)window.GetWidth(), (float)window.GetHeight()));
 }
 
 void Game::UnPause()

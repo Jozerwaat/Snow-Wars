@@ -16,7 +16,7 @@ public:
 	void ShowPauseScreen();
 
 private:
-	Window* m_window;
+	Window* m_window = nullptr;
 	Game m_game;
 };
 

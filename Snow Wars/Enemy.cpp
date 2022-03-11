@@ -27,8 +27,8 @@ void Enemy::Update()
 			for (int i = 0; i < 6; i++)
 			{
 				vec2 directionOffset = { 0,0 };
-				directionOffset.x = cos((m_rotationAngle + angle) * piRadiant);
-				directionOffset.y = sin((m_rotationAngle + angle) * piRadiant);
+				directionOffset.x = (float)cos((m_rotationAngle + angle) * piRadiant);
+				directionOffset.y = (float)sin((m_rotationAngle + angle) * piRadiant);
 				ProjectileController::Instance().SpawnProjectile(0, directionOffset, m_transform.GetPosition(), (m_rotationAngle + angle) + 90); //Add plus 90 to the angle to accomodate for the rotation offset
 				angle += 60.0f;
 			}
@@ -41,7 +41,7 @@ void Enemy::Update()
 	{
 		vec2 lookDirection = { 0,0 };
 		lookDirection = (m_player->GetTransform()->GetPosition() - m_transform.GetPosition()).normalized();
-		m_rotationAngle = ((((atan2(-lookDirection.y, -lookDirection.x)) * 180) / pi) + 180) + 90; //Add plus 90 to the angle to accomodate for the rotation offset
+		m_rotationAngle = (float)((((atan2(-lookDirection.y, -lookDirection.x)) * 180) / pi) + 180) + 90; //Add plus 90 to the angle to accomodate for the rotation offset
 
 		m_attackTime += timer.ElapsedSeconds();
 		if (m_attackTime >= m_attackRate)

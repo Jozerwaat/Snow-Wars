@@ -26,8 +26,6 @@ private:
 	void MouseEvents();
 
 	vec2 m_mousePos = { 0,0 };
-	float m_mouseScaleX = 1;
-	float m_mouseScaleY = 1;
 
 	bool m_quit = false;
 	bool m_pause = false;

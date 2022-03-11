@@ -17,7 +17,7 @@ void PowerupController::Update()
 		Spawn();
 	}
 
-	for (int i = 0; i < m_spawnedPowerups.size(); i++)
+	for (unsigned int i = 0; i < m_spawnedPowerups.size(); i++)
 	{
 		m_spawnedPowerups[i]->Update();
 		if (m_spawnedPowerups[i]->GetCollider()->IsColliding(m_player->GetCollider()))
@@ -50,15 +50,15 @@ void PowerupController::Spawn()
 	powerup->SetRadius(50);
 	powerup->GetTransform()->GetPosition() = CalculateSpawnPosition();
 	m_spawnedPowerups.push_back(powerup);
-	m_spawnRate = 14 + (-5 + (rand() % 10));
+	m_spawnRate = 14.0f + (float)(-5 + (rand() % 10));
 }
 
 vec2 PowerupController::CalculateSpawnPosition()
 {
 	vec2 spawnPosition = { 100,100 };
 
-	spawnPosition.x = 200 + (rand() % (m_window->GetWidth() - 400));
-	spawnPosition.y = 200 + (rand() % (m_window->GetHeight() - 400));
+	spawnPosition.x = 200.0f + (float)(rand() % (m_window->GetWidth() - 400));
+	spawnPosition.y = 200.0f + (float)(rand() % (m_window->GetHeight() - 400));
 
 	return spawnPosition;
 }
@@ -66,7 +66,7 @@ vec2 PowerupController::CalculateSpawnPosition()
 void PowerupController::Reset()
 {
 	m_currentTime = 0;
-	m_spawnRate = 14 + (-5 + (rand() % 10));
+	m_spawnRate = 14.0f + (float)(-5 + (rand() % 10));
 	PoolAll();
 }
 

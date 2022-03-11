@@ -21,7 +21,7 @@ public:
 	void PoolProjectile(int index);
 	void PoolAll();
 private:
-	std::vector<Projectile*> m_projectiles;
+	std::vector<Projectile*> m_projectiles = {};
 	Window* m_window = nullptr;
-	Player* m_player;
+	Player* m_player = nullptr;
 };

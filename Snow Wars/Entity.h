@@ -21,7 +21,7 @@ public:
 	
 	virtual void Init() {}
 	virtual void Update() {}
-	virtual void SetRadius(int radius) { m_collider = CircleCollider(radius, &m_transform); }
+	virtual void SetRadius(float radius) { m_collider = CircleCollider(radius, &m_transform); }
 
 	bool IsInstantiated() { return m_instantiated; }
 

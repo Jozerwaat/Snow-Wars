@@ -25,7 +25,7 @@ public:
 	double GetFPS();
 
 	double ElapsedMilliSeconds() const;
-	double ElapsedSeconds() const;
+	float ElapsedSeconds() const;
 
 	double TotalTimeMilliSeconds() const;
 	double TotalTimeSeconds() const;

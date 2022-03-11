@@ -29,6 +29,6 @@ public:
 private:
 	Window* m_window;
 	int m_health = 3;
-	bool m_isInvincible;
+	bool m_isInvincible = false;
 };
 

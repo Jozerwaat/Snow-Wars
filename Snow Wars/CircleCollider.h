@@ -6,7 +6,7 @@ class CircleCollider
 public:
 	CircleCollider() = default;
 
-	CircleCollider(int radius, Transform* transform)
+	CircleCollider(float radius, Transform* transform)
 	{
 		m_radius = radius;
 		m_transform = transform;
@@ -18,6 +18,6 @@ public:
 
 private:
 	Transform* m_transform = nullptr;
-	int m_radius = 1;
+	float m_radius = 1;
 };
 

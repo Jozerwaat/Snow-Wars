@@ -29,7 +29,7 @@ public:
 	{
 		m_transform.GetPosition() = position;
 	}
-	void (*function)();
+	void (*function)() = nullptr;
 
 private:
 	bool m_hide = false;

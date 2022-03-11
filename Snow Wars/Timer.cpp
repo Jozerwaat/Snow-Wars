@@ -48,7 +48,7 @@ void Timer::Tick()
 	auto delta = t1 - t0;
 	t0 = t1;
 
-	m_elapsedTime = delta.count();
+	m_elapsedTime = (double)delta.count();
 	m_totalTime += m_elapsedTime;
 }
 
@@ -57,9 +57,9 @@ double Timer::ElapsedMilliSeconds() const
 {
 	return m_elapsedTime * 1e-6;
 }
-double Timer::ElapsedSeconds() const
+float Timer::ElapsedSeconds() const
 {
-	return m_elapsedTime * 1e-9;
+	return (float)(m_elapsedTime * 1e-9);
 }
 
 double Timer::TotalTimeMilliSeconds() const

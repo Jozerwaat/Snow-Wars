@@ -24,9 +24,6 @@ void ScoreController::Reset()
 
 void ScoreController::DisplayScore(vec2 position)
 {
-	std::string scoreString = "Score: " + std::to_string(m_score);
-	char scoreChar[11];
-	//strcpy(scoreChar, scoreString.c_str());
-	//screen->Print(scoreChar, 10, 10, 0xffff0000, 3);
+
 	scoreText.Display(position);
 }

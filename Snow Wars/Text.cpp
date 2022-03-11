@@ -17,8 +17,8 @@ void Text::ChangeText(const std::string& message)
 
 void Text::Display(vec2 pos)
 {
-    m_textRect.x = pos.x;
-    m_textRect.y = pos.y;
+    m_textRect.x = (int)pos.x;
+    m_textRect.y = (int)pos.y;
 
     SDL_RenderCopy(Window::m_renderer, m_texture, nullptr, &m_textRect);
 }

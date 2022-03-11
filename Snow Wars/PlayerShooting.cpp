@@ -9,12 +9,13 @@ static double pi = 2 * acos(0.0);
 static double piRadiant = pi / 180;
 
 static float currentTime = 1;
-static float attackSpeed = 3;
+static float attackSpeed = 8.0f;
 
 static float fireRatePowerupDuration = 5.0f;
 static float fireRatePowerupCurrentTime = 0;
 static bool fireRatePowerupStarted = false;
 
+static int snowballCount = 3;
 static float multiShotPowerupDuration = 8.0f;
 static float multiShotPowerupCurrentTime = 0;
 static bool multiShotPowerupStarted = false;
@@ -34,8 +35,8 @@ void PlayerShooting::Update()
 
 	if (fireRatePowerupStarted)
 	{
-		if (attackSpeed != 7)
-			attackSpeed = 7;
+		if (attackSpeed != 16)
+			attackSpeed = 16;
 
 		fireRatePowerupCurrentTime += timer.ElapsedSeconds();
 		fireRateRenderer.Render(vec2(m_player->GetTransform()->GetPosition().x, m_player->GetTransform()->GetPosition().y - 60));
@@ -45,7 +46,7 @@ void PlayerShooting::Update()
 		{
 			fireRatePowerupStarted = false;
 			fireRatePowerupCurrentTime = 0;
-			attackSpeed = 3;
+			attackSpeed = 8;
 		}
 	}
 
@@ -83,8 +84,8 @@ void PlayerShooting::SnowballBurst()
 	for (int i = 0; i < 36; i++)
 	{
 		vec2 directionOffset = { 0,0 };
-		directionOffset.x = cos((m_aimAngle + angle) * piRadiant);
-		directionOffset.y = sin((m_aimAngle + angle) * piRadiant);
+		directionOffset.x = (float)cos((m_aimAngle + angle) * piRadiant);
+		directionOffset.y = (float)sin((m_aimAngle + angle) * piRadiant);
 		angle += 10.0f;
 		m_snowballController->SpawnSnowball(directionOffset, m_transform->GetPosition());
 
@@ -95,7 +96,7 @@ void PlayerShooting::Reset()
 {
 	fireRatePowerupStarted = false;
 	fireRatePowerupCurrentTime = 0;
-	attackSpeed = 3;
+	attackSpeed = 8;
 	multiShotPowerupStarted = false;
 	multiShotPowerupCurrentTime = 0;
 }
@@ -109,12 +110,12 @@ void PlayerShooting::CalculateAimAngle()
 	m_aim.y = mousePos.y - position.y;
 
 	m_aim = m_aim.normalize(m_aim);
-	m_aimAngle = (((atan2(-m_aim.y, -m_aim.x)) * 180) / pi ) + 180;		//Convert radians to 360 degrees, negate the x and y and add 180 to get a 360 angle
+	m_aimAngle = (float)(((atan2(-m_aim.y, -m_aim.x)) * 180) / pi ) + 180;		//Convert radians to 360 degrees, negate the x and y and add 180 to get a 360 angle
 }
 
 void PlayerShooting::Shoot()
 {
-	if ((currentTime * attackSpeed) > 0.4f)
+	if ((currentTime * attackSpeed) > 1.0f)
 	{
 		currentTime = 0;
 
@@ -123,14 +124,13 @@ void PlayerShooting::Shoot()
 		else if(multiShotPowerupStarted)
 		{
 			float angleOffset = -15.0f;
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < snowballCount; i++)
 			{
 				vec2 directionOffset = { 0,0 };
-				directionOffset.x = cos((m_aimAngle + angleOffset) * piRadiant);
-				directionOffset.y = sin((m_aimAngle + angleOffset) * piRadiant);
+				directionOffset.x = (float)cos((m_aimAngle + angleOffset) * piRadiant);
+				directionOffset.y = (float)sin((m_aimAngle + angleOffset) * piRadiant);
 				angleOffset += 15.0f;
 				m_snowballController->SpawnSnowball(directionOffset, m_transform->GetPosition());
-
 			}
 		}
 	}

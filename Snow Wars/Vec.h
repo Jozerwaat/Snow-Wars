@@ -4,9 +4,10 @@
 struct vec2 // adapted from https://github.com/dcow/RayTracer
 {
 	union { struct { float x, y; }; float cell[2]; };
-	vec2() {}
+	vec2() { x = 0; y = 0; }
 	vec2(float v) : x(v), y(v) {}
 	vec2(float x, float y) : x(x), y(y) {}
+	vec2(int x, int y) : x((float)x), y((float)y) {}
 	vec2 operator - () const { return vec2(-x, -y); }
 	vec2 operator + (const vec2& addOperand) const { return vec2(x + addOperand.x, y + addOperand.y); }
 	vec2 operator - (const vec2& operand) const { return vec2(x - operand.x, y - operand.y); }

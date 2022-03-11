@@ -5,7 +5,7 @@
 static const Input& input = Input::Instance();
 static const Timer& timer = Timer::Instance();
 
-static int speed = 300;
+static float speed = 300.0f;
 
 void PlayerMovement::Move()
 {
@@ -64,15 +64,15 @@ void PlayerMovement::Dash()
 
 void PlayerMovement::ClipBorder()
 {
-	if (m_transform->GetPosition().x >= (m_window->GetWidth() - 45))
-		m_transform->GetPosition().x = m_window->GetWidth() - 45;
+	if (m_transform->GetPosition().x >= (m_window->GetWidth() - 45.0f))
+		m_transform->GetPosition().x = (float)(m_window->GetWidth() - 45.0f);
 
-	if (m_transform->GetPosition().x <= (45))
-		m_transform->GetPosition().x = 45;
+	if (m_transform->GetPosition().x <= (45.0f))
+		m_transform->GetPosition().x = 45.0f;
 
-	if (m_transform->GetPosition().y >= (m_window->GetHeight() - 45))
-		m_transform->GetPosition().y = m_window->GetHeight() - 45;
+	if (m_transform->GetPosition().y >= (m_window->GetHeight() - 45.0f))
+		m_transform->GetPosition().y = (float)(m_window->GetHeight() - 45.0f);
 
-	if (m_transform->GetPosition().y <= (45))
-		m_transform->GetPosition().y = 45;
+	if (m_transform->GetPosition().y <= (45.0f))
+		m_transform->GetPosition().y = 45.0f;
 }

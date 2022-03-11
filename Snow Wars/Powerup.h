@@ -22,8 +22,8 @@ public:
 	POWERUP_TYPE GetPowerUpType() { return m_type; }
 	void SetType(POWERUP_TYPE type) { m_type = type; }
 private:
-	float m_duration;
-	POWERUP_TYPE m_type;
+	float m_duration = 5.0f;
+	POWERUP_TYPE m_type = POWERUP_TYPE::FIRE_RATE;
 	std::string m_spritePath = "";
 };
 

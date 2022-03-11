@@ -20,14 +20,14 @@ public:
 	Projectile(vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size) {}
 	~Projectile() {}
 
-	void SetPrefab(PROJECTILE_TYPE type, int speed, int colliderRaidus) 
+	void SetPrefab(PROJECTILE_TYPE type, float speed, float colliderRaidus) 
 	{
 		m_type = type;
 		m_speed = speed;
 		m_colliderRadius = colliderRaidus;
 	}
 
-	void Init(vec2 position, vec2 direction, int speed, float rotationAngle = 0)
+	void Init(vec2 position, vec2 direction, float speed, float rotationAngle = 0)
 	{
 		m_transform.GetPosition() = position;
 		m_direction = direction;
@@ -35,8 +35,8 @@ public:
 		m_rotationAngle = rotationAngle;
 	}
 
-	void SetSpeed(int speed) { m_speed = speed; }
-	int GetSpeed() { return m_speed; }
+	void SetSpeed(float speed) { m_speed = speed; }
+	float GetSpeed() { return m_speed; }
 	bool OutsideBounds(int screenWidth, int screenHeight);
 
 	virtual void Update() override;
@@ -52,7 +52,7 @@ private:
 
 	float m_rotationAngle = 0;
 	float m_colliderRadius = 5;
-	int m_speed = 1;
+	float m_speed = 1.0f;
 };
 
 /*When an enemy spawns it has the ability to shoot a projectiles

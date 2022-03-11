@@ -28,7 +28,7 @@ ProjectileController& ProjectileController::Instance()
 
 void ProjectileController::Update()
 {
-	for (int i = 0; i < m_projectiles.size(); i++)
+	for (unsigned int i = 0; i < m_projectiles.size(); i++)
 	{
 		m_projectiles[i]->Update();
 

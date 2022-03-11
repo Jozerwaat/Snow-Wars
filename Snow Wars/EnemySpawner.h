@@ -22,9 +22,9 @@ private:
 	Window* m_screen = nullptr;
 
 	std::vector<Enemy*> m_enemies = {};
-	Player* m_player;
-	float m_currentTime;
-	SnowballController* m_snowballController;
+	Player* m_player = nullptr;
+	float m_currentTime = 0;
+	SnowballController* m_snowballController = nullptr;
 };
 
 

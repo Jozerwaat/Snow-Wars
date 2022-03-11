@@ -45,7 +45,7 @@ void EnemySpawner::Update()
 		m_currentTime = 0;
 		CalculateSpawnPosition();
 	}
-	for (int i = 0; i < m_enemies.size(); i++)
+	for (unsigned int i = 0; i < m_enemies.size(); i++)
 	{
 		if (m_enemies[i]->DestroyEnemy()) 
 		{
@@ -79,7 +79,7 @@ void EnemySpawner::Update()
 
 void EnemySpawner::CheckCollision(int index)
 {
-	for (int j = 0; j < m_snowballController->GetSnowballs().size(); j++)
+	for (unsigned int j = 0; j < m_snowballController->GetSnowballs().size(); j++)
 	{
 		if (m_enemies[index]->GetCollider()->IsColliding(m_snowballController->GetSnowballs()[j]->GetCollider()))
 		{
@@ -134,7 +134,7 @@ void EnemySpawner::Spawn(vec2 direction, vec2 position)
 	else if (randomEnemy == 2)
 		enemy = pool.GetEnemy(snowman);
 
-	int enemySpeed = enemy->GetBaseSpeed() + (-(enemy->GetBaseSpeed() * 0.3f) + (rand() % enemy->GetBaseSpeed() * 0.3f));
+	float enemySpeed = enemy->GetBaseSpeed() + (-(enemy->GetBaseSpeed() * 0.3f) + (rand() % (int)enemy->GetBaseSpeed() * 0.3f));
 	enemy->Init(position, direction, enemySpeed,3, false);
 
 	m_enemies.push_back(enemy);
@@ -156,37 +156,37 @@ void EnemySpawner::CalculateSpawnPosition()
 	{
 	case 0://Spawns on left side
 	{
-		int randY = rand() % m_screen->GetHeight();
+		float randY = (float)(rand() % m_screen->GetHeight());
 		float randDirY = (-1.0f + (float(rand())) / float((RAND_MAX)) * 2.0f);
-		randomPos = vec2(-25, randY);
-		randomDir = vec2(1, randDirY);
+		randomPos = vec2(-25.0f, randY);
+		randomDir = vec2(1.0f, randDirY);
 		break;
 	}
 
 	case 1://Spawns on top side
 	{
-		int randX = rand() % m_screen->GetWidth();
+		float randX = (float)(rand() % m_screen->GetWidth());
 		float randDirX = (-1.0f + (float(rand())) / float((RAND_MAX)) * 2.0f);
-		randomPos = vec2(randX, -25);
-		randomDir = vec2(randDirX, 1);
+		randomPos = vec2(randX, -25.0f);
+		randomDir = vec2(randDirX, 1.0f);
 		break;
 	}
 
 	case 2://Spawns on right side
 	{
-		int randY = rand() % m_screen->GetHeight();
+		float randY = (float)(rand() % m_screen->GetHeight());
 		float randDirY = (-1.0f + (float(rand())) / float((RAND_MAX)) * 2.0f);
-		randomPos = vec2(m_screen->GetWidth() + 25, randY);
-		randomDir = vec2(-1, randDirY);
+		randomPos = vec2(m_screen->GetWidth() + 25.0f, randY);
+		randomDir = vec2(-1.0f, randDirY);
 		break;
 	}
 
 	case 3://Spawns on top side
 	{
-		int randX = rand() % m_screen->GetWidth();
+		float randX = (float)(rand() % m_screen->GetWidth());
 		float randDirX = (-1.0f + (float(rand())) / float((RAND_MAX)) * 2.0f);
-		randomPos = vec2(randX, m_screen->GetHeight() + 25);
-		randomDir = vec2(randDirX, -1);
+		randomPos = vec2(randX, m_screen->GetHeight() + 25.0f);
+		randomDir = vec2(randDirX, -1.0f);
 		break;
 	}
 	}

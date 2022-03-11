@@ -44,10 +44,10 @@ void ShowMenu()
 void FullScreen()
 {
 	game->FullScreen();
-	startButton.SetPosition(vec2(wind->GetWidth() / 2, (wind->GetHeight() / 2) - 60));
-	quitButton.SetPosition(vec2(wind->GetWidth() / 2, (wind->GetHeight() / 2) + 60));
-	resumeButton.SetPosition(vec2(wind->GetWidth() / 2, (wind->GetHeight() / 2) - 60));
-	menuButton.SetPosition(vec2(wind->GetWidth() / 2, (wind->GetHeight() / 2) + 60));
+	startButton.SetPosition(vec2((float)wind->GetWidth() / 2.0f, (float)(wind->GetHeight() / 2.0f) - 60.0f));
+	quitButton.SetPosition(vec2((float)wind->GetWidth() / 2.0f, (float)(wind->GetHeight() / 2.0f) + 60.0f));
+	resumeButton.SetPosition(vec2((float)wind->GetWidth() / 2.0f, (float)(wind->GetHeight() / 2.0f) - 60.0f));
+	menuButton.SetPosition(vec2((float)wind->GetWidth() / 2.0f, (float)(wind->GetHeight() / 2.0f) + 60.0f));
 	fullScreenButton.SetPosition(vec2(wind->GetWidth() - 100, 100));
 
 	overlayRenderer.~Renderer();

@@ -2,12 +2,12 @@
 #include "ObjectPool.h"
 
 static std::string spritePath = "Assets/Snowball.png";
-static int speed = 1000;
+static float speed = 1000.0f;
 
 static ObjectPool<Snowball> objectPool;
 void SnowballController::UpdateSnowballs()
 {
-	for (int i = 0; i < m_snowballs.size(); i++)
+	for (unsigned int i = 0; i < m_snowballs.size(); i++)
 	{
 		m_snowballs[i]->Update();
 

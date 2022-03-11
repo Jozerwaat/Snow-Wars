@@ -22,7 +22,7 @@ public:
 	Enemy(vec2 position, std::string spritePath, int frameCount, vec2 size = NULL) : Entity(position, spritePath, frameCount, size) {}
 	~Enemy() {}
 
-	void Init(vec2 position, vec2 direction, int speed, int health, bool destroy = false)
+	void Init(vec2 position, vec2 direction, float speed, int health, bool destroy = false)
 	{
 		m_destroy = destroy;
 		m_transform.GetPosition() = position;
@@ -31,7 +31,7 @@ public:
 		m_health = health;
 	}
 
-	void SetPrefab(ENEMY_TYPE type, int colliderRadius, int baseSpeed, float rotationSpeed, Player* player) 
+	void SetPrefab(ENEMY_TYPE type, float colliderRadius, float baseSpeed, float rotationSpeed, Player* player)
 	{
 		m_type = type;
 		m_colliderRadius = colliderRadius;
@@ -48,7 +48,7 @@ public:
 
 	inline void TakeDamage() { m_health--; }
 
-	int GetBaseSpeed() { return m_baseSpeed; }
+	float GetBaseSpeed() { return m_baseSpeed; }
 
 	ENEMY_TYPE GetEnemyType() { return m_type; }
 
@@ -61,15 +61,15 @@ private:
 	bool m_destroy = false;
 	ENEMY_TYPE m_type = ENEMY_TYPE::ICE_BALL;
 	vec2 m_direction = { 0,0 };
-	int m_speed = 1;
-	int m_baseSpeed = 1;
-	int m_rotationSpeed = 0;
 	int m_health = 3;
-	int m_colliderRadius = 10;
+	float m_speed = 1.0f;
+	float m_baseSpeed = 1.0f;
+	float m_rotationSpeed = 0;
+	float m_colliderRadius = 10.0f;
 	float m_rotationAngle = 0;
 	float m_rotationTime = 0;
 
 	float m_attackTime = 0;
-	float m_attackRate = 3;
+	float m_attackRate = 3.0f;
 };
 

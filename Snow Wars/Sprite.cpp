@@ -9,8 +9,8 @@ Sprite::Sprite(const std::string& imagePath, vec2 size) :
 
 	if (size.x == 0 && size.y == 0) 
 	{
-		m_size.x = surface->w;
-		m_size.y = surface->h;
+		m_size.x = (float)surface->w;
+		m_size.y = (float)surface->h;
 	}
 
 	if (surface == NULL)

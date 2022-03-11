@@ -59,11 +59,8 @@ void Input::MouseEvents()
 	Uint32 buttons = SDL_GetMouseState(&mouseX, &mouseY);
 	SDL_PumpEvents();  // make sure we have the latest mouse state.
 
-	mouseX /= m_mouseScaleX;
-	mouseY /= m_mouseScaleY;
-
-	m_mousePos.x = mouseX;
-	m_mousePos.y = mouseY;
+	m_mousePos.x = (float)mouseX;
+	m_mousePos.y = (float)mouseY;
 
 	if (buttons == 1)
 		m_leftMouseDown = true;
