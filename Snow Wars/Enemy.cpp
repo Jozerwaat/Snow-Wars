@@ -19,7 +19,7 @@ void Enemy::Update()
 	{
 		m_rotationTime += timer.ElapsedSeconds();
 		timeToExplode = 13 + (-4.0f + (float(rand())) / float((RAND_MAX)) * 7.0f);
-		//float randDirY = (-1.0f + (float(rand())) / float((RAND_MAX)) * 2.0f);
+
 		if (m_rotationTime >= timeToExplode)
 		{
 			float angle = 0.0f;

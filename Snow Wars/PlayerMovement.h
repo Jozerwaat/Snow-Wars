@@ -20,8 +20,8 @@ public:
 private:
 	vec2 m_moveDirection = { 0,0 };
 	vec2 m_dashDirection = { 0,0 };
-	Window* m_window;
-	Transform* m_transform;
+	Window* m_window = nullptr;
+	Transform* m_transform = nullptr;
 	bool m_dashStarted = false;
 	float m_dashCooldown = 0.5f;
 	float m_currenTime = 0;

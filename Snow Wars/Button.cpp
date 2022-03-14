@@ -32,11 +32,6 @@ bool Button::LeftMouseDown()
 	return false;
 }
 
-void Button::MouseUp()
-{
-}
-
-
 void Button::Update()
 {
 	if (m_hide)

@@ -22,7 +22,6 @@ public:
 	bool MouseOver();
 	bool LeftMouseDown();
 
-	void MouseUp();
 	void Update();
 	void OnClick();
 	void SetPosition(vec2 position) 

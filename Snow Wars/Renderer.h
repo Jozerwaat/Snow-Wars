@@ -40,4 +40,3 @@ private:
 	float m_currentTime = 0;
 	bool m_loopBack = false;
 };
-

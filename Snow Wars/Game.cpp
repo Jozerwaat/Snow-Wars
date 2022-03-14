@@ -46,7 +46,7 @@ void Game::Init()
 void Game::Update()
 {
 	window.Render();
-	backgroundRend.Render(vec2((float)window.GetWidth() / 2.0f, (float)window.GetHeight() / 2.0f));
+	backgroundRend.Render(vec2(window.GetWidth() / 2.0f, window.GetHeight() / 2.0f));
 	input.Instance().Update();
 	scoreController.Instance().DisplayScore(vec2(10.0f, 10.0f));
 
@@ -70,7 +70,7 @@ void Game::Update()
 		Timer::Instance().Tick();
 
 	healthbar.SetFrame(player.GetHealth());
-	healthbar.Render(vec2((float)window.GetWidth() - 145.0f, (float)window.GetHeight() - 45.0f));
+	healthbar.Render(vec2(window.GetWidth() - 145.0f, window.GetHeight() - 45.0f));
 
 	powerupController.Update();
 	snowballController.UpdateSnowballs();
@@ -94,7 +94,7 @@ void Game::Reset()
 	scoreController.Instance().Reset();
 
 	player.Reset();
-	player.GetCollider()->GetTransform()->GetPosition() = vec2((float)window.GetWidth() / 2.0f, (float)window.GetHeight() / 2.0f);
+	player.GetCollider()->GetTransform()->GetPosition() = vec2(window.GetWidth() / 2.0f, window.GetHeight() / 2.0f);
 	m_gameOver = false;
 	input.Instance().UnPause();
 }
@@ -126,7 +126,7 @@ void Game::FullScreen()
 {
 	window.Resize();
 	backgroundRend.~Renderer();
-	new(&backgroundRend) Renderer("Assets/BackgroundHD.png", 1, vec2((float)window.GetWidth(), (float)window.GetHeight()));
+	new(&backgroundRend) Renderer("Assets/BackgroundHD.png", 1, vec2(window.GetWidth(), window.GetHeight()));
 }
 
 void Game::UnPause()

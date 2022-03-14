@@ -24,6 +24,5 @@ void ScoreController::Reset()
 
 void ScoreController::DisplayScore(vec2 position)
 {
-
 	scoreText.Display(position);
 }

@@ -28,9 +28,9 @@ private:
 	void Shoot();
 	void Aim();
 
-	Player* m_player;
-	SnowballController* m_snowballController;
-	Transform* m_transform;
-	vec2 m_aim;
+	Player* m_player = nullptr;
+	SnowballController* m_snowballController = nullptr;
+	Transform* m_transform = nullptr;
+	vec2 m_aim = {};
 	float m_aimAngle = 0;
 };

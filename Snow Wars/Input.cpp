@@ -49,8 +49,6 @@ const Uint8* Input::KeyboardEvents()
 	const Uint8* keystates = SDL_GetKeyboardState(NULL);
 
 	return keystates;
-
-
 }
 
 void Input::MouseEvents()
