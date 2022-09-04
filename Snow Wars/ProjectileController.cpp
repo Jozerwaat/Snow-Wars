@@ -54,6 +54,7 @@ void ProjectileController::Update()
 
 void ProjectileController::SpawnProjectile(int projectileID, vec2 direction, vec2 position, float rotationAngle)
 {
+	
 	Projectile* projectile = nullptr;
 
 	if(projectileID == 0)

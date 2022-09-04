@@ -13,7 +13,7 @@ ScoreController& ScoreController::Instance()
 void ScoreController::AddScore(int amount)
 {
 	m_score += amount;
-	scoreText.ChangeText("Score: " + std::to_string(m_score));
+	scoreText.ChangeText("Score: " + std::to_string(m_score  * 1000));
 }
 
 void ScoreController::Reset()
@@ -24,5 +24,6 @@ void ScoreController::Reset()
 
 void ScoreController::DisplayScore(vec2 position)
 {
+	AddScore(0);
 	scoreText.Display(position);
 }

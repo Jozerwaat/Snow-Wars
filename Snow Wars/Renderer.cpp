@@ -25,6 +25,8 @@ void Renderer::Render(const vec2& position, const float angle)
 {
 	float frameWidth = m_sprite->GetSize().x / m_frameCount;
 
+	SDL_Rect rect{ 0,0,0,0 };
+
 	SDL_Rect image;
 	image.x = (int)((position.x - frameWidth) + (frameWidth / 2));
 	image.y = (int)(position.y - (m_sprite->GetSize().y / 2));

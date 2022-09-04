@@ -1,0 +1,5 @@
+Controls:
+WASD to move
+Move the mouse to aim
+Left mouse button to shoot
+Right mouse button to dash

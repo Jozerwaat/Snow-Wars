@@ -72,4 +72,3 @@ private:
 	float m_attackTime = 0;
 	float m_attackRate = 3.0f;
 };
-
